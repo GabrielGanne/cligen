@@ -1,4 +1,6 @@
-.PHONY: mypy flake8 jsonschema codegen docgen-man docgen-texi check
+.PHONY: mypy flake8 jsonschema codegen docgen-man docgen-texi check install
+
+all:
 
 mypy:
 	MYPYPATH=. mypy cli-codegen.py cli-docgen.py
@@ -57,3 +59,11 @@ docgen-texi:
 	done
 
 check: mypy flake8 jsonschema codegen docgen-man docgen-texi
+
+install:
+	install -D -t ${DESTDIR} cli-codegen.py
+	install -D -t ${DESTDIR} cli-docgen.py
+	install -d ${DESTDIR}/cligen
+	install -D -t ${DESTDIR}/cligen cligen/*.py
+	install -d ${DESTDIR}/cligen/doc
+	install -D -t ${DESTDIR}/cligen cligen/doc/*.py

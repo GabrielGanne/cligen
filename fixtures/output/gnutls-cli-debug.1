@@ -1,0 +1,107 @@
+.de1 NOP
+.  it 1 an-trap
+.  if \\n[.$] \,\\$*\/
+..
+.ie t \
+.ds B-Font [CB]
+.ds I-Font [CI]
+.ds R-Font [CR]
+.el \
+.ds B-Font B
+.ds I-Font I
+.ds R-Font R
+.TH gnutls-cli-debug 1 "08 Mar 2022" "3.7.4" "User Commands"
+.SH NAME
+\f\*[B-Font]gnutls-cli-debug\fP
+\- GnuTLS debug client
+.SH SYNOPSIS
+\f\*[B-Font]gnutls-cli-debug\fP
+.\" Mixture of short (flag) options and long options
+[\f\*[B-Font]\-flags\f[]]
+[\f\*[B-Font]\-flag\f[] [\f\*[I-Font]value\f[]]]
+[\f\*[B-Font]\-\-option-name\f[][[=| ]\f\*[I-Font]value\f[]]]
+[hostname]
+.sp \n(Ppu
+.ne 2
+
+Operands and options may be intermixed.  They will be reordered.
+.sp \n(Ppu
+.ne 2
+.SH "DESCRIPTION"
+TLS debug client. It sets up multiple TLS connections to 
+a server and queries its capabilities. It was created to assist in debugging 
+GnuTLS, but it might be useful to extract a TLS server's capabilities.
+It connects to a TLS server, performs tests and print the server's 
+capabilities. If called with the `-V' parameter more checks will be performed.
+Can be used to check for servers with special needs or bugs.
+.sp
+.SH "OPTIONS"
+.TP
+.NOP \f\*[B-Font]\-d\f[] \f\*[I-Font]num\f[], \f\*[B-Font]\-\-debug\f[]=\f\*[I-Font]num\f[]
+Enable debugging.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 0 through 9999
+.fi
+.in -4
+.sp
+Specifies the debug level.
+.TP
+.NOP \f\*[B-Font]\-V\f[], \f\*[B-Font]\-\-verbose\f[]
+More verbose output.
+.sp
+.TP
+.NOP \f\*[B-Font]\-p\f[] \f\*[I-Font]num\f[], \f\*[B-Font]\-\-port\f[]=\f\*[I-Font]num\f[]
+The port to connect to.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 0 through 65536
+.fi
+.in -4
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-app\-proto\f[]
+This is an alias for the \fI--starttls-proto\fR option.
+.TP
+.NOP \f\*[B-Font]\-\-starttls\-proto\f[]=\f\*[I-Font]str\f[]
+The application protocol to be used to obtain the server's certificate (https, ftp, smtp, imap, ldap, xmpp, lmtp, pop3, nntp, sieve, postgres).
+.sp
+Specify the application layer protocol for STARTTLS. If the protocol is supported, gnutls\-cli will proceed to the TLS negotiation.
+.TP
+.NOP \f\*[B-Font]\-v\f[] \f\*[I-Font]arg\f[], \f\*[B-Font]\-\-version\f[]=\f\*[I-Font]arg\f[]
+Output version of program and exit.  The default mode is `v', a simple
+version.  The `c' mode will print copyright information and `n' will
+print the full copyright notice.
+.TP
+.NOP \f\*[B-Font]\-h\f[], \f\*[B-Font]\-\-help\f[]
+Display usage information and exit.
+.TP
+.NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
+Pass the extended usage information through a pager.
+
+.SH "EXIT STATUS"
+One of the following exit values will be returned:
+.TP
+.NOP 0 " (EXIT_SUCCESS)"
+Successful program execution.
+.TP
+.NOP 1 " (EXIT_FAILURE)"
+The operation failed or the command syntax was not valid.
+.PP
+.SH "AUTHORS"
+
+.SH "COPYRIGHT"
+Copyright (C) 2022 Daiki Ueno
+This program is released under the terms of
+the GNU General Public License, version 3 or later
+.

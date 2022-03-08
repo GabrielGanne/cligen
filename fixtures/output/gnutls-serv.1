@@ -1,0 +1,366 @@
+.de1 NOP
+.  it 1 an-trap
+.  if \\n[.$] \,\\$*\/
+..
+.ie t \
+.ds B-Font [CB]
+.ds I-Font [CI]
+.ds R-Font [CR]
+.el \
+.ds B-Font B
+.ds I-Font I
+.ds R-Font R
+.TH gnutls-serv 1 "08 Mar 2022" "3.7.4" "User Commands"
+.SH NAME
+\f\*[B-Font]gnutls-serv\fP
+\- GnuTLS server
+.SH SYNOPSIS
+\f\*[B-Font]gnutls-serv\fP
+.\" Mixture of short (flag) options and long options
+[\f\*[B-Font]\-flags\f[]]
+[\f\*[B-Font]\-flag\f[] [\f\*[I-Font]value\f[]]]
+[\f\*[B-Font]\-\-option-name\f[][[=| ]\f\*[I-Font]value\f[]]]
+.sp \n(Ppu
+.ne 2
+
+All arguments must be options.
+.sp \n(Ppu
+.ne 2
+.SH "DESCRIPTION"
+Server program that listens to incoming TLS connections.
+.sp
+.SH "OPTIONS"
+.TP
+.NOP \f\*[B-Font]\-d\f[] \f\*[I-Font]num\f[], \f\*[B-Font]\-\-debug\f[]=\f\*[I-Font]num\f[]
+Enable debugging.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 0 through 9999
+.fi
+.in -4
+.sp
+Specifies the debug level.
+.TP
+.NOP \f\*[B-Font]\-\-sni\-hostname\f[]=\f\*[I-Font]str\f[]
+Server's hostname for server name extension.
+.sp
+Server name of type host_name that the server will recognise as its own. If the server receives client hello with different name, it will send a warning\-level unrecognized_name alert.
+.TP
+.NOP \f\*[B-Font]\-\-sni\-hostname\-fatal\f[]
+Send fatal alert on sni-hostname mismatch.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-alpn\f[]=\f\*[I-Font]str\f[]
+Specify ALPN protocol to be enabled by the server.
+This option may appear an unlimited number of times.
+.sp
+Specify the (textual) ALPN protocol for the server to use.
+.TP
+.NOP \f\*[B-Font]\-\-alpn\-fatal\f[]
+Send fatal alert on non-matching ALPN name.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-noticket\f[]
+Don't accept session tickets.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-earlydata\f[]
+Accept early data.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-maxearlydata\f[]=\f\*[I-Font]num\f[]
+The maximum early data size to accept.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 1 through None
+.fi
+.in -4
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-nocookie\f[]
+Don't require cookie on DTLS sessions.
+.sp
+.TP
+.NOP \f\*[B-Font]\-g\f[], \f\*[B-Font]\-\-generate\f[]
+Generate Diffie-Hellman parameters.
+.sp
+.TP
+.NOP \f\*[B-Font]\-q\f[], \f\*[B-Font]\-\-quiet\f[]
+Suppress some messages.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-nodb\f[]
+Do not use a resumption database.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-http\f[]
+Act as an HTTP server.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-echo\f[]
+Act as an Echo server.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-crlf\f[]
+Do not replace CRLF by LF in Echo server mode.
+.sp
+.TP
+.NOP \f\*[B-Font]\-u\f[], \f\*[B-Font]\-\-udp\f[]
+Use DTLS (datagram TLS) over UDP.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-mtu\f[]=\f\*[I-Font]num\f[]
+Set MTU for datagram TLS.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 0 through 17000
+.fi
+.in -4
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-srtp\-profiles\f[]=\f\*[I-Font]str\f[]
+Offer SRTP profiles.
+.sp
+.TP
+.NOP \f\*[B-Font]\-a\f[], \f\*[B-Font]\-\-disable\-client\-cert\f[]
+Do not request a client certificate.
+This option must not appear in combination with any of the following options:
+require-client-cert.
+.sp
+.TP
+.NOP \f\*[B-Font]\-r\f[], \f\*[B-Font]\-\-require\-client\-cert\f[]
+Require a client certificate.
+.sp
+This option before 3.6.0 used to imply \-\-verify\-client\-cert.
+Since 3.6.0 it will no longer verify the certificate by default.
+.TP
+.NOP \f\*[B-Font]\-\-verify\-client\-cert\f[]
+If a client certificate is sent then verify it.
+.sp
+Do not require, but if a client certificate is sent then verify it and close the connection if invalid.
+.TP
+.NOP \f\*[B-Font]\-b\f[], \f\*[B-Font]\-\-heartbeat\f[]
+Activate heartbeat support.
+.sp
+Regularly ping client via heartbeat extension messages
+.TP
+.NOP \f\*[B-Font]\-\-x509fmtder\f[]
+Use DER format for certificates to read from.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-priority\f[]=\f\*[I-Font]str\f[]
+Priorities string.
+.sp
+TLS algorithms and protocols to enable. You can
+use predefined sets of ciphersuites such as PERFORMANCE,
+NORMAL, SECURE128, SECURE256. The default is NORMAL.
+.sp
+Check  the  GnuTLS  manual  on  section  \(lqPriority strings\(rq for more
+information on allowed keywords
+.TP
+.NOP \f\*[B-Font]\-\-dhparams\f[]=\f\*[I-Font]file\f[]
+DH params file to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-x509cafile\f[]=\f\*[I-Font]str\f[]
+Certificate file or PKCS #11 URL to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-x509crlfile\f[]=\f\*[I-Font]file\f[]
+CRL file to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-pgpkeyfile\f[]=\f\*[I-Font]file\f[]
+PGP Key file to use.
+.sp
+.sp
+.B
+NOTE: THIS OPTION IS DEPRECATED
+.TP
+.NOP \f\*[B-Font]\-\-x509keyfile\f[]=\f\*[I-Font]str\f[]
+X.509 key file or PKCS #11 URL to use.
+This option may appear an unlimited number of times.
+.sp
+Specify the private key file or URI to use; it must correspond to
+the certificate specified in \-\-x509certfile. Multiple keys and certificates
+can be specified with this option and in that case each occurrence of keyfile
+must be followed by the corresponding x509certfile or vice\-versa.
+.TP
+.NOP \f\*[B-Font]\-\-x509certfile\f[]=\f\*[I-Font]str\f[]
+X.509 Certificate file or PKCS #11 URL to use.
+This option may appear an unlimited number of times.
+.sp
+Specify the certificate file or URI to use; it must correspond to
+the key specified in \-\-x509keyfile. Multiple keys and certificates
+can be specified with this option and in that case each occurrence of keyfile
+must be followed by the corresponding x509certfile or vice\-versa.
+.TP
+.NOP \f\*[B-Font]\-\-x509dsakeyfile\f[]
+This is an alias for the \fI--x509keyfile\fR option.
+.sp
+.B
+NOTE: THIS OPTION IS DEPRECATED
+.TP
+.NOP \f\*[B-Font]\-\-x509dsacertfile\f[]
+This is an alias for the \fI--x509certfile\fR option.
+.sp
+.B
+NOTE: THIS OPTION IS DEPRECATED
+.TP
+.NOP \f\*[B-Font]\-\-x509ecckeyfile\f[]
+This is an alias for the \fI--x509keyfile\fR option.
+.sp
+.B
+NOTE: THIS OPTION IS DEPRECATED
+.TP
+.NOP \f\*[B-Font]\-\-x509ecccertfile\f[]
+This is an alias for the \fI--x509certfile\fR option.
+.sp
+.B
+NOTE: THIS OPTION IS DEPRECATED
+.TP
+.NOP \f\*[B-Font]\-\-rawpkkeyfile\f[]=\f\*[I-Font]str\f[]
+Private key file (PKCS #8 or PKCS #12) or PKCS #11 URL to use.
+This option may appear an unlimited number of times.
+.sp
+Specify the private key file or URI to use; it must correspond to
+the raw public\-key specified in \-\-rawpkfile. Multiple key pairs
+can be specified with this option and in that case each occurrence of keyfile
+must be followed by the corresponding rawpkfile or vice\-versa.
+.sp
+In order to instruct the application to negotiate raw public keys one
+must enable the respective certificate types via the priority strings (i.e. CTYPE\-CLI\-*
+and CTYPE\-SRV\-* flags).
+.sp
+Check  the  GnuTLS  manual  on  section  \(lqPriority strings\(rq for more
+information on how to set certificate types.
+.TP
+.NOP \f\*[B-Font]\-\-rawpkfile\f[]=\f\*[I-Font]str\f[]
+Raw public-key file to use.
+This option may appear an unlimited number of times.
+This option must appear in combination with the following options:
+rawpkkeyfile.
+.sp
+Specify the raw public\-key file to use; it must correspond to
+the private key specified in \-\-rawpkkeyfile. Multiple key pairs
+can be specified with this option and in that case each occurrence of keyfile
+must be followed by the corresponding rawpkfile or vice\-versa.
+.sp
+In order to instruct the application to negotiate raw public keys one
+must enable the respective certificate types via the priority strings (i.e. CTYPE\-CLI\-*
+and CTYPE\-SRV\-* flags).
+.sp
+Check  the  GnuTLS  manual  on  section  \(lqPriority strings\(rq for more
+information on how to set certificate types.
+.TP
+.NOP \f\*[B-Font]\-\-srppasswd\f[]=\f\*[I-Font]file\f[]
+SRP password file to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-srppasswdconf\f[]=\f\*[I-Font]file\f[]
+SRP password configuration file to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-pskpasswd\f[]=\f\*[I-Font]file\f[]
+PSK password file to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-pskhint\f[]=\f\*[I-Font]str\f[]
+PSK identity hint to use.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-ocsp\-response\f[]=\f\*[I-Font]str\f[]
+The OCSP response to send to client.
+This option may appear an unlimited number of times.
+.sp
+If the client requested an OCSP response, return data from this file to the client.
+.TP
+.NOP \f\*[B-Font]\-\-ignore\-ocsp\-response\-errors\f[]
+Ignore any errors when setting the OCSP response.
+.sp
+That option instructs gnutls to not attempt to match the provided OCSP responses with the certificates.
+.TP
+.NOP \f\*[B-Font]\-p\f[] \f\*[I-Font]num\f[], \f\*[B-Font]\-\-port\f[]=\f\*[I-Font]num\f[]
+The port to connect to.
+This option takes an integer number as its argument.
+.sp
+.TP
+.NOP \f\*[B-Font]\-l\f[], \f\*[B-Font]\-\-list\f[]
+Print a list of the supported algorithms and modes.
+.sp
+Print a list of the supported algorithms and modes. If a priority string is given then only the enabled ciphersuites are shown.
+.TP
+.NOP \f\*[B-Font]\-\-provider\f[]=\f\*[I-Font]file\f[]
+Specify the PKCS #11 provider library.
+.sp
+This will override the default options in /etc/gnutls/pkcs11.conf
+.TP
+.NOP \f\*[B-Font]\-\-keymatexport\f[]=\f\*[I-Font]str\f[]
+Label used for exporting keying material.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-keymatexportsize\f[]=\f\*[I-Font]num\f[]
+Size of the exported keying material.
+This option takes an integer number as its argument.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-recordsize\f[]=\f\*[I-Font]num\f[]
+The maximum record size to advertise.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 0 through 16384
+.fi
+.in -4
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-httpdata\f[]=\f\*[I-Font]file\f[]
+The data used as HTTP response.
+.sp
+.TP
+.NOP \f\*[B-Font]\-v\f[] \f\*[I-Font]arg\f[], \f\*[B-Font]\-\-version\f[]=\f\*[I-Font]arg\f[]
+Output version of program and exit.  The default mode is `v', a simple
+version.  The `c' mode will print copyright information and `n' will
+print the full copyright notice.
+.TP
+.NOP \f\*[B-Font]\-h\f[], \f\*[B-Font]\-\-help\f[]
+Display usage information and exit.
+.TP
+.NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
+Pass the extended usage information through a pager.
+
+.SH "EXIT STATUS"
+One of the following exit values will be returned:
+.TP
+.NOP 0 " (EXIT_SUCCESS)"
+Successful program execution.
+.TP
+.NOP 1 " (EXIT_FAILURE)"
+The operation failed or the command syntax was not valid.
+.PP
+.SH "AUTHORS"
+
+.SH "COPYRIGHT"
+Copyright (C) 2022 Daiki Ueno
+This program is released under the terms of
+the GNU General Public License, version 3 or later
+.

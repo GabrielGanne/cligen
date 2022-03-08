@@ -1,0 +1,93 @@
+.de1 NOP
+.  it 1 an-trap
+.  if \\n[.$] \,\\$*\/
+..
+.ie t \
+.ds B-Font [CB]
+.ds I-Font [CI]
+.ds R-Font [CR]
+.el \
+.ds B-Font B
+.ds I-Font I
+.ds R-Font R
+.TH systemkey-tool 1 "08 Mar 2022" "3.7.4" "User Commands"
+.SH NAME
+\f\*[B-Font]systemkey-tool\fP
+\- GnuTLS system key tool
+.SH SYNOPSIS
+\f\*[B-Font]systemkey-tool\fP
+.\" Mixture of short (flag) options and long options
+[\f\*[B-Font]\-flags\f[]]
+[\f\*[B-Font]\-flag\f[] [\f\*[I-Font]value\f[]]]
+[\f\*[B-Font]\-\-option-name\f[][[=| ]\f\*[I-Font]value\f[]]]
+.sp \n(Ppu
+.ne 2
+
+All arguments must be options.
+.sp \n(Ppu
+.ne 2
+.SH "DESCRIPTION"
+Program that allows handling user keys as stored in the system in a uniform way.
+.sp
+.SH "OPTIONS"
+.TP
+.NOP \f\*[B-Font]\-d\f[] \f\*[I-Font]num\f[], \f\*[B-Font]\-\-debug\f[]=\f\*[I-Font]num\f[]
+Enable debugging.
+This option takes an integer number as its argument.
+The value of
+\f\*[I-Font]num\f[]
+is constrained to being:
+.in +4
+.nf
+.na
+in the range 0 through 9999
+.fi
+.in -4
+.sp
+Specifies the debug level.
+.TP
+.NOP \f\*[B-Font]\-\-outfile\f[]=\f\*[I-Font]str\f[]
+Output file.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-list\f[]
+Lists all stored keys.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-delete\f[]=\f\*[I-Font]url\f[]
+Delete the key identified by the given URL.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-outder\f[], \f\*[B-Font]\-\-no\-outder\f[]
+Use DER format for output keys.
+The \fIno\-outder\fP form will disable the option.
+.sp
+The output will be in DER format.
+.TP
+.NOP \f\*[B-Font]\-v\f[] \f\*[I-Font]arg\f[], \f\*[B-Font]\-\-version\f[]=\f\*[I-Font]arg\f[]
+Output version of program and exit.  The default mode is `v', a simple
+version.  The `c' mode will print copyright information and `n' will
+print the full copyright notice.
+.TP
+.NOP \f\*[B-Font]\-h\f[], \f\*[B-Font]\-\-help\f[]
+Display usage information and exit.
+.TP
+.NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
+Pass the extended usage information through a pager.
+
+.SH "EXIT STATUS"
+One of the following exit values will be returned:
+.TP
+.NOP 0 " (EXIT_SUCCESS)"
+Successful program execution.
+.TP
+.NOP 1 " (EXIT_FAILURE)"
+The operation failed or the command syntax was not valid.
+.PP
+.SH "AUTHORS"
+
+.SH "COPYRIGHT"
+Copyright (C) 2022 Daiki Ueno
+This program is released under the terms of
+the GNU General Public License, version 3 or later
+.

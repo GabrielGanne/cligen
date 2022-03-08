@@ -1,0 +1,86 @@
+@node systemkey-tool Invocation
+@heading Invoking systemkey-tool
+@pindex systemkey-tool
+
+Program that allows handling user keys as stored in the system in a uniform way.
+
+@anchor{systemkey-tool usage}
+@subheading systemkey-tool help/usage (@option{-?})
+@cindex systemkey-tool help
+
+The text printed is the same whether selected with the @code{help} option
+(@option{--help}) or the @code{more-help} option (@option{--more-help}).  @code{more-help} will print
+the usage text by passing it through a pager program.
+@code{more-help} is disabled on platforms without a working
+@code{fork(2)} function.  The @code{PAGER} environment variable is
+used to select the program, defaulting to @file{more}.  Both will exit
+with a status code of 0.
+
+@exampleindent 0
+@example
+systemkey-tool - GnuTLS system key tool
+Usage:  systemkey-tool [ -<flag> [<val>] | --<name>[@{=| @}<val>] ]... 
+
+None:
+
+   -d, --debug=num            Enable debugging
+				- it must be in the range:
+				  0 to 9999
+       --outfile=str          Output file
+       --list                 Lists all stored keys
+       --delete=str           Delete the key identified by the given URL
+       --outder               Use DER format for output keys
+
+Version, usage and configuration options:
+
+   -v, --version[=arg]        output version information and exit
+   -h, --help                 display extended usage information and exit
+   -!, --more-help            extended usage information passed thru pager
+
+Options are specified by doubled hyphens and their name or by a single
+hyphen and the flag character.
+
+Program that allows handling user keys as stored in the system in a uniform way.
+
+@end example
+@exampleindent 4
+
+@subheading debug option (-d).
+@anchor{systemkey-tool debug}
+
+This is the ``enable debugging'' option.
+This option takes a ArgumentType.NUMBER argument.
+Specifies the debug level.
+@subheading outder option.
+@anchor{systemkey-tool outder}
+
+This is the ``use der format for output keys'' option.
+The output will be in DER format.
+@subheading version option (-v).
+@anchor{systemkey-tool version}
+
+This is the ``output version information and exit'' option.
+This option takes a ArgumentType.KEYWORD argument.
+Output version of program and exit.  The default mode is `v', a simple
+version.  The `c' mode will print copyright information and `n' will
+print the full copyright notice.
+@subheading help option (-h).
+@anchor{systemkey-tool help}
+
+This is the ``display extended usage information and exit'' option.
+Display usage information and exit.
+@subheading more-help option (-!).
+@anchor{systemkey-tool more-help}
+
+This is the ``extended usage information passed thru pager'' option.
+Pass the extended usage information through a pager.
+@anchor{systemkey-tool exit status}
+@subheading systemkey-tool exit status
+
+One of the following exit values will be returned:
+@table @samp
+@item 0 (EXIT_SUCCESS)
+Successful program execution.
+@item 1 (EXIT_FAILURE)
+The operation failed or the command syntax was not valid.
+@end table

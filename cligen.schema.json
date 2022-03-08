@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gitlab.com/dueno/cligen/cligen.schema.json",
+  "title": "cligen",
+  "description": "cligen",
+  "type": "object",
+  "properties": {
+    "format-version": {
+      "description": "The version of the schema",
+      "type": "string"
+    },
+    "tool": {
+      "description": "The tool description",
+      "type": "object",
+      "properties": {
+	"name": {
+	  "description": "The name of the tool",
+	  "type": "string"
+	},
+	"title": {
+	  "description": "The brief title of the tool",
+	  "type": "string"
+	},
+	"description": {
+	  "description": "The description of the tool",
+	  "type": "string"
+	},
+	"detail": {
+	  "description": "The detailed description of the tool",
+	  "type": "string"
+	},
+	"short-usage": {
+	  "description": "The command-line usage of the tool",
+	  "type": "string"
+	},
+	"argument": {
+	  "description": "The argument of the tool",
+	  "type": "string"
+	},
+	"reorder-arguments": {
+	  "description": "Whether the argument list is reordered after parsing options",
+	  "type": "boolean"
+	}
+      },
+      "requires": ["name", "title", "description", "detail", "short-usage"]
+    },
+    "sections": {
+      "description": "The option groups",
+      "type": "array",
+      "items": {
+	"type": "object",
+	"properties": {
+	  "ref": {
+	    "description": "The reference ID of the section",
+	    "type": "string"
+	  },
+	  "description": {
+	    "description": "The description of the option group",
+	    "type": "string"
+	  },
+	  "options": {
+	    "description": "The list of options",
+	    "type": "array",
+	    "items": {
+	      "type": "object",
+	      "properties": {
+		"long-option": {
+		  "description": "The long-form option",
+		  "type": "string"
+		},
+		"short-option": {
+		  "description": "The single character short-form option",
+		  "type": "string"
+		},
+		"description": {
+		  "description": "The brief description of the option",
+		  "type": "string"
+		},
+		"detail": {
+		  "description": "The detailed description of the option",
+		  "type": "string"
+		},
+		"argument-optional": {
+		  "description": "Whether the argument is optional",
+		  "type": "boolean"
+		},
+		"file-exists": {
+		  "description": "Whether the path corresponding to the argument should exist",
+		  "type": "boolean"
+		},
+		"deprecated": {
+		  "description": "Whether the option is deprecated",
+		  "type": "boolean"
+		},
+		"aliases": {
+		  "description": "Indicate this option is an alias of given option",
+		  "type": "string"
+		},
+		"conflicts": {
+		  "description": "The options conflicting with this option",
+		  "type": "array",
+		  "items": {
+		    "type": "string"
+		  }
+		},
+		"requires": {
+		  "description": "The options required by this option",
+		  "type": "array",
+		  "items": {
+		    "type": "string"
+		  }
+		},
+		"argument-range": {
+		  "description": "The argument value range, if argument-type is number",
+		  "type": "object",
+		  "properties": {
+		    "min": {
+		      "description": "The lower bound of the range",
+		      "type": "integer"
+		    },
+		    "max": {
+		      "description": "The upper bound of the range",
+		      "type": "integer"
+		    }
+		  }
+		},
+		"argument-type": {
+		  "description": "The type of the option argument",
+		  "type": "string",
+		  "enum": ["string", "number", "file", "keyword"]
+		},
+		"argument-name": {
+		  "description": "The name of the argument",
+		  "type": "string"
+		},
+		"multiple": {
+		  "description": "Whether the option can be specified multiple times",
+		  "type": "boolean"
+		},
+		"occur-range": {
+		  "description": "How many times this option can be specified",
+		  "type": "object",
+		  "properties": {
+		    "min": {
+		      "description": "The lower bound of the range",
+		      "type": "integer"
+		    },
+		    "max": {
+		      "description": "The upper bound of the range",
+		      "type": "integer"
+		    }
+		  }
+		},
+		"enabled": {
+		  "description": "Whether this option is enabled by default",
+		  "type": "boolean"
+		},
+		"disable-prefix": {
+		  "description": "Prefix to the option to disable",
+		  "type": "string"
+		},
+		"enable-prefix": {
+		  "description": "Prefix to the option to enable",
+		  "type": "string"
+		}
+	      },
+	      "requires": ["long-option"]
+	    }
+	  }
+	},
+	"requires": ["options"]
+      }
+    }
+  },
+  "requires": ["format-version", "tool", "sections"]
+}

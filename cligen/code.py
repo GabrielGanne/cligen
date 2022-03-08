@@ -356,11 +356,12 @@ OPT_VALUE_{upper_opt} > {arg_range.maximum})
 #include "config.h"
 #endif
 
-#include "{outfile.name}"
+#include "{outfile.name.removesuffix('.c')}.h"
 #include <errno.h>
 #include <error.h>
 #include <getopt.h>
 #include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #ifndef _WIN32

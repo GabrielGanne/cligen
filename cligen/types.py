@@ -108,8 +108,8 @@ class OptionDesc(NamedTuple):
                    argument_name=obj.get('argument-name'),
                    multiple=obj.get('multiple'),
                    occur_range=UnsignedRange.from_json(
-                       obj['occur-range']
-                   ) if 'occur-range' in obj else None,
+                       obj['occurrences']
+                   ) if 'occurrences' in obj else None,
                    enabled=obj.get('enabled', False),
                    disable_prefix=obj.get('disable-prefix'),
                    enable_prefix=obj.get('enable-prefix'))

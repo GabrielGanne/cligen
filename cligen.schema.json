@@ -137,7 +137,7 @@
 		  "description": "Whether the option can be specified multiple times",
 		  "type": "boolean"
 		},
-		"occur-range": {
+		"occurrences": {
 		  "description": "How many times this option can be specified",
 		  "type": "object",
 		  "properties": {

@@ -371,6 +371,10 @@ OPT_VALUE_{upper_opt} > {arg_range.maximum})
 
 struct {struct_name} {global_name};
 
+''')
+
+    if has_list_arg:
+        outfile.write(f'''\
 /* Copied from xsize.h in Gnulib */
 
 /* Sum of two sizes, with overflow check.  */
@@ -384,10 +388,7 @@ xsum (size_t size1, size_t size2)
 /* Check for overflow.  */
 #define size_overflow_p(SIZE) \
 {INDENT}((SIZE) == SIZE_MAX)
-''')
 
-    if has_list_arg:
-        outfile.write(f'''\
 static void
 append_to_list (struct {mangle(desc.tool.name)}_list *list,
                 const char *name, const char *arg)
@@ -447,7 +448,7 @@ static const struct option long_options[] =
 int
 process_options (int argc, char **argv)
 {{
-{INDENT}struct {struct_name} *opts = {global_name};
+{INDENT}struct {struct_name} *opts = &{global_name};
 {INDENT}int opt;
 
 {enable_statements.getvalue().rstrip()}

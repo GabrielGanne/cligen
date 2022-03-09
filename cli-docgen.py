@@ -43,7 +43,7 @@ includes = dict()
 if args.include:
     for i in args.include:
         (section, infile) = i.split('=')
-        includes[section] = infile
+        includes[section] = open(infile, 'r')
 
 if args.format == 'man':
     import cligen.doc.man

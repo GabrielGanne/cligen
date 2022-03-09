@@ -52,7 +52,9 @@ class Range(NamedTuple):
 
     @classmethod
     def from_json(cls, obj):
-        return cls(minimum=obj.get('min'), maximum=obj.get('max'))
+        default = cls.default()
+        return cls(minimum=obj.get('min', default.minimum),
+                   maximum=obj.get('max', default.maximum))
 
 
 class SignedRange(Range):

@@ -34,7 +34,7 @@ None:
        --earlydata            Accept early data
        --maxearlydata=num     The maximum early data size to accept
 				- it must be in the range:
-				  1 to None
+				  1 to 2147483648
        --nocookie             Don't require cookie on DTLS sessions
    -g, --generate             Generate Diffie-Hellman parameters
    -q, --quiet                Suppress some messages

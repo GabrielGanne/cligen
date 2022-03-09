@@ -2,11 +2,12 @@
 #include "config.h"
 #endif
 
-#include "fixtures/output/gnutls-cli-args.c"
+#include "fixtures/output/gnutls-cli-args.h"
 #include <errno.h>
 #include <error.h>
 #include <getopt.h>
 #include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #ifndef _WIN32
@@ -28,6 +29,7 @@ xsum (size_t size1, size_t size2)
 
 /* Check for overflow.  */
 #define size_overflow_p(SIZE)   ((SIZE) == SIZE_MAX)
+
 static void
 append_to_list (struct gnutls_cli_list *list,
                 const char *name, const char *arg)
@@ -157,7 +159,7 @@ static const struct option long_options[] =
 int
 process_options (int argc, char **argv)
 {
-  struct gnutls_cli_options *opts = gnutls_cli_options;
+  struct gnutls_cli_options *opts = &gnutls_cli_options;
   int opt;
 
   opts->enabled.ca_verification = true;

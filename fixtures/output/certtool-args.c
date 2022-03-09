@@ -2,11 +2,12 @@
 #include "config.h"
 #endif
 
-#include "fixtures/output/certtool-args.c"
+#include "fixtures/output/certtool-args.h"
 #include <errno.h>
 #include <error.h>
 #include <getopt.h>
 #include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #ifndef _WIN32
@@ -16,18 +17,6 @@
 
 struct certtool_options certtool_options;
 
-/* Copied from xsize.h in Gnulib */
-
-/* Sum of two sizes, with overflow check.  */
-static inline size_t
-xsum (size_t size1, size_t size2)
-{
-  size_t sum = size1 + size2;
-  return (sum >= size1 ? sum : SIZE_MAX);
-}
-
-/* Check for overflow.  */
-#define size_overflow_p(SIZE)   ((SIZE) == SIZE_MAX)
 static long
 parse_number (const char *arg)
 {
@@ -155,7 +144,7 @@ static const struct option long_options[] =
 int
 process_options (int argc, char **argv)
 {
-  struct certtool_options *opts = certtool_options;
+  struct certtool_options *opts = &certtool_options;
   int opt;
 
   opts->enabled.p7_include_cert = true;

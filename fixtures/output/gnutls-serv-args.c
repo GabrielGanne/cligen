@@ -2,11 +2,12 @@
 #include "config.h"
 #endif
 
-#include "fixtures/output/gnutls-serv-args.c"
+#include "fixtures/output/gnutls-serv-args.h"
 #include <errno.h>
 #include <error.h>
 #include <getopt.h>
 #include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #ifndef _WIN32
@@ -28,6 +29,7 @@ xsum (size_t size1, size_t size2)
 
 /* Check for overflow.  */
 #define size_overflow_p(SIZE)   ((SIZE) == SIZE_MAX)
+
 static void
 append_to_list (struct gnutls_serv_list *list,
                 const char *name, const char *arg)
@@ -133,7 +135,7 @@ static const struct option long_options[] =
 int
 process_options (int argc, char **argv)
 {
-  struct gnutls_serv_options *opts = gnutls_serv_options;
+  struct gnutls_serv_options *opts = &gnutls_serv_options;
   int opt;
 
 
@@ -392,7 +394,7 @@ process_options (int argc, char **argv)
       error (EXIT_FAILURE, 0, "%s option value %d is out of range.",
              "maxearlydata", opts->value.maxearlydata);
     }
-  if (HAVE_OPT(MAXEARLYDATA) && OPT_VALUE_MAXEARLYDATA > None)
+  if (HAVE_OPT(MAXEARLYDATA) && OPT_VALUE_MAXEARLYDATA > 2147483648)
     {
       error (EXIT_FAILURE, 0, "%s option value %d is out of range",
              "maxearlydata", opts->value.maxearlydata);
@@ -566,7 +568,7 @@ usage (FILE *out, int status)
     "       --earlydata            Accept early data\n"
     "       --maxearlydata=num     The maximum early data size to accept\n"
     "				- it must be in the range:\n"
-    "				  1 to None\n"
+    "				  1 to 2147483648\n"
     "       --nocookie             Don't require cookie on DTLS sessions\n"
     "   -g, --generate             Generate Diffie-Hellman parameters\n"
     "   -q, --quiet                Suppress some messages\n"

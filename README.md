@@ -10,10 +10,9 @@ This project was born during the process of
 GnuTLS CLI infrastructure.  Several other tools had been considered
 but none of them satisfied the following requirements:
 
-- Produce option parsing code and documentation from the same
-  specification
-- Works with (build-)dependencies available in the minimal set of
-  developer tools
+- The generator produces option parsing code and documentation from
+  the same specification
+- The generator is written and works with minimal (build-)dependencies
 - The generated code works without separate runtime library
 
 ## Usage

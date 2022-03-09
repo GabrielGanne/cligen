@@ -66,4 +66,4 @@ install:
 	install -d ${DESTDIR}/cligen
 	install -D -t ${DESTDIR}/cligen cligen/*.py
 	install -d ${DESTDIR}/cligen/doc
-	install -D -t ${DESTDIR}/cligen cligen/doc/*.py
+	install -D -t ${DESTDIR}/cligen/doc cligen/doc/*.py

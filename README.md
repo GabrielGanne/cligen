@@ -24,9 +24,8 @@ schema is defined in [cligen.schema.json](cligen.schema.json) so you
 can validate your specification with:
 
 ```console
-$ jsonschema --instance your-options.json \
-  --error-format "ERROR: {error.path} {error.message}" \
-  cligen.schema.json
+$ jsonschema --error-format "ERROR: {error.path} {error.message}" \
+             --instance your-options.json cligen.schema.json
 ```
 
 after installing python3-jsonschema package.
@@ -37,25 +36,24 @@ To generate command-line parser code (based on getopt) from JSON
 specification:
 
 ```console
-$ PYTHONPATH=. ./cli-codegen.py \
-  --package YOUR_PACKAGE --version YOUR_VERSION \
-  options.json foo.c foo.h
+$ PYTHONPATH=. ./cli-codegen.py --package YOUR_PACKAGE --version YOUR_VERSION \
+                                your-options.json foo.c foo.h
 ```
 
 To generate man page from JSON specification:
 
 ```console
 $ PYTHONPATH=. ./cli-docgen.py --format man \
-  --package YOUR_PACKAGE --version YOUR_VERSION \
-  options.json foo.1
+                               --package YOUR_PACKAGE --version YOUR_VERSION \
+                               your-options.json foo.1
 ```
 
 To generate texinfo documentation from JSON specification:
 
 ```console
 $ PYTHONPATH=. ./cli-docgen.py --format texi \
-  --package YOUR_PACKAGE --version YOUR_VERSION \
-  options.json foo.texi
+                               --package YOUR_PACKAGE --version YOUR_VERSION \
+                               your-options.json foo.texi
 ```
 
 ### Using the generated code from your program

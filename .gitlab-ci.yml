@@ -11,7 +11,7 @@ variables:
 
 check:
   image: $CI_REGISTRY/$BUILD_IMAGES_PROJECT:$FEDORA_BUILD
-  stage: build
+  stage: check
   tags:
     - shared
     - linux

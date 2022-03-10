@@ -87,6 +87,23 @@ Display usage information and exit.
 .NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
 Pass the extended usage information through a pager.
 
+.sp
+.SH EXAMPLES
+To add a user 'psk_identity' in \fIkeys.psk\fP for use with GnuTLS run:
+.br
+.in +4
+.nf
+$ ./psktool \-u psk_identity \-p keys.psk
+Generating a random key for user 'psk_identity'
+Key stored to keys.psk
+$ cat keys.psk
+psk_identity:88f3824b3e5659f52d00e959bacab954b6540344
+$
+.in -4
+.fi
+.sp
+This command will create \fIkeys.psk\fP if it does not exist
+and will add user 'psk_identity'.
 .SH "EXIT STATUS"
 One of the following exit values will be returned:
 .TP
@@ -96,6 +113,8 @@ Successful program execution.
 .NOP 1 " (EXIT_FAILURE)"
 The operation failed or the command syntax was not valid.
 .PP
+.SH "SEE ALSO"
+gnutls\-cli\-debug (1), gnutls\-serv (1), srptool (1), certtool (1)
 .SH "AUTHORS"
 
 .SH "COPYRIGHT"

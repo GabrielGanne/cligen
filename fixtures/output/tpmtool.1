@@ -159,6 +159,48 @@ Display usage information and exit.
 .NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
 Pass the extended usage information through a pager.
 
+.sp
+.SH EXAMPLES
+To generate a key that is to be stored in file system use:
+.br
+.in +4
+.nf
+$ tpmtool \-\-generate\-rsa \-\-bits 2048 \-\-outfile tpmkey.pem
+.in -4
+.fi
+.sp
+To generate a key that is to be stored in TPM's flash use:
+.br
+.in +4
+.nf
+$ tpmtool \-\-generate\-rsa \-\-bits 2048 \-\-register \-\-user
+.in -4
+.fi
+.sp
+To get the public key of a TPM key use:
+.br
+.in +4
+.nf
+$ tpmtool \-\-pubkey tpmkey:uuid=58ad734b\-bde6\-45c7\-89d8\-756a55ad1891;storage=user \
+          \-\-outfile pubkey.pem
+.in -4
+.fi
+.sp
+or if the key is stored in the file system:
+.br
+.in +4
+.nf
+$ tpmtool \-\-pubkey tpmkey:file=tmpkey.pem \-\-outfile pubkey.pem
+.in -4
+.fi
+.sp
+To list all keys stored in TPM use:
+.br
+.in +4
+.nf
+$ tpmtool \-\-list
+.in -4
+.fi
 .SH "EXIT STATUS"
 One of the following exit values will be returned:
 .TP
@@ -168,6 +210,8 @@ Successful program execution.
 .NOP 1 " (EXIT_FAILURE)"
 The operation failed or the command syntax was not valid.
 .PP
+.SH "SEE ALSO"
+p11tool (1), certtool (1)
 .SH "AUTHORS"
 
 .SH "COPYRIGHT"

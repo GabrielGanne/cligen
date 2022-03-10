@@ -85,6 +85,36 @@ Display usage information and exit.
 .NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
 Pass the extended usage information through a pager.
 
+.sp
+.SH EXAMPLES
+To create \fItpasswd.conf\fP which holds the g and n values for SRP protocol
+(generator and a large prime), run:
+.br
+.in +4
+.nf
+$ srptool \-\-create\-conf /etc/tpasswd.conf
+.in -4
+.fi
+.sp
+This command will create \fI/etc/tpasswd\fP and will add user 'test' (you
+will also be prompted for a password). Verifiers are stored by default
+in the way libsrp expects.
+.br
+.in +4
+.nf
+$ srptool \-\-passwd /etc/tpasswd \-\-passwd\-conf /etc/tpasswd.conf \-u test
+.in -4
+.fi
+.sp
+.sp
+This command will check against a password. If the password matches
+the one in \fI/etc/tpasswd\fP you will get an ok.
+.br
+.in +4
+.nf
+$ srptool \-\-passwd /etc/tpasswd \-\-passwd\\-conf /etc/tpasswd.conf \-\-verify \-u test
+.in -4
+.fi
 .SH "EXIT STATUS"
 One of the following exit values will be returned:
 .TP
@@ -94,6 +124,8 @@ Successful program execution.
 .NOP 1 " (EXIT_FAILURE)"
 The operation failed or the command syntax was not valid.
 .PP
+.SH "SEE ALSO"
+gnutls\-cli\-debug (1), gnutls\-serv (1), srptool (1), psktool (1), certtool (1)
 .SH "AUTHORS"
 
 .SH "COPYRIGHT"

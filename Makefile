@@ -34,8 +34,8 @@ docgen-man:
 		tool=`expr $$json : '.*/\(.*\)-options.json'`; \
 		includes=''; \
 		for section in description files examples see-also; do \
-			test -e fixtures/input/$$tool-$$section && \
-			includes="$$includes --include $$section=fixtures/input/$$tool-$$section"; \
+			test -e fixtures/input/$$tool-$$section.texi && \
+			includes="$$includes --include $$section=fixtures/input/$$tool-$$section.texi"; \
 		done; \
 		echo "Generating man documentation for $$tool"; \
 		./cli-docgen.py --format man \
@@ -50,8 +50,8 @@ docgen-texi:
 		echo "Generating texi documentation for $$tool"; \
 		includes=''; \
 		for section in description files examples see-also; do \
-			test -e fixtures/input/$$tool-$$section && \
-			includes="$$includes --include $$section=fixtures/input/$$tool-$$section"; \
+			test -e fixtures/input/$$tool-$$section.texi && \
+			includes="$$includes --include $$section=fixtures/input/$$tool-$$section.texi"; \
 		done; \
 		./cli-docgen.py --format texi \
 		--package GnuTLS --version 3.7.4 $$includes \

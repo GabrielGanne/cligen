@@ -27,10 +27,15 @@ All arguments must be options.
 .sp \n(Ppu
 .ne 2
 .SH "DESCRIPTION"
-ocsptool is a program that can parse and print information about
-OCSP requests/responses, generate requests and verify responses. Unlike
-other GnuTLS applications it outputs DER encoded structures by default
-unless the '--outpem' option is specified.
+.br
+\fBOn verification\fP
+.br
+Responses are typically signed/issued by designated certificates or
+certificate authorities and thus this tool requires on verification
+the certificate of the issuer or the full certificate chain in order to
+determine the appropriate signing authority. The specified certificate
+of the issuer is assumed trusted.
+.sp
 .sp
 .SH "OPTIONS"
 .TP
@@ -166,6 +171,177 @@ Display usage information and exit.
 .NOP \f\*[B-Font]\-!\f[], \f\*[B-Font]\-\-more\-help\f[]
 Pass the extended usage information through a pager.
 
+.sp
+.SH EXAMPLES
+.br
+\fBPrint information about an OCSP request\fP
+.br
+.sp
+To parse an OCSP request and print information about the content, the
+\fB\-i\fP or \fB\-\-request\-info\fP parameter may be used as follows.
+The \fB\-Q\fP parameter specify the name of the file containing the
+OCSP request, and it should contain the OCSP request in binary DER
+format.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-i \-Q ocsp\-request.der
+.in -4
+.fi
+.sp
+The input file may also be sent to standard input like this:
+.sp
+.br
+.in +4
+.nf
+$ cat ocsp\-request.der | ocsptool \-\-request\-info
+.in -4
+.fi
+.sp
+.br
+\fBPrint information about an OCSP response\fP
+.br
+.sp
+Similar to parsing OCSP requests, OCSP responses can be parsed using
+the \fB\-j\fP or \fB\-\-response\-info\fP as follows.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-j \-Q ocsp\-response.der
+$ cat ocsp\-response.der | ocsptool \-\-response\-info
+.in -4
+.fi
+.sp
+.br
+\fBGenerate an OCSP request\fP
+.br
+.sp
+The \fB\-q\fP or \fB\-\-generate\-request\fP parameters are used to
+generate an OCSP request.  By default the OCSP request is written to
+standard output in binary DER format, but can be stored in a file
+using \fB\-\-outfile\fP.  To generate an OCSP request the issuer of the
+certificate to check needs to be specified with \fB\-\-load\-issuer\fP
+and the certificate to check with \fB\-\-load\-cert\fP.  By default PEM
+format is used for these files, although \fB\-\-inder\fP can be used to
+specify that the input files are in DER format.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-q \-\-load\-issuer issuer.pem \-\-load\-cert client.pem \
+           \-\-outfile ocsp\-request.der
+.in -4
+.fi
+.sp
+When generating OCSP requests, the tool will add an OCSP extension
+containing a nonce.  This behaviour can be disabled by specifying
+\fB\-\-no\-nonce\fP.
+.sp
+.br
+\fBVerify signature in OCSP response\fP
+.br
+.sp
+To verify the signature in an OCSP response the \fB\-e\fP or
+\fB\-\-verify\-response\fP parameter is used.  The tool will read an
+OCSP response in DER format from standard input, or from the file
+specified by \fB\-\-load\-response\fP.  The OCSP response is verified
+against a set of trust anchors, which are specified using
+\fB\-\-load\-trust\fP.  The trust anchors are concatenated certificates
+in PEM format.  The certificate that signed the OCSP response needs to
+be in the set of trust anchors, or the issuer of the signer
+certificate needs to be in the set of trust anchors and the OCSP
+Extended Key Usage bit has to be asserted in the signer certificate.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-e \-\-load\-trust issuer.pem \
+           \-\-load\-response ocsp\-response.der
+.in -4
+.fi
+.sp
+The tool will print status of verification.
+.sp
+.br
+\fBVerify signature in OCSP response against given certificate\fP
+.br
+.sp
+It is possible to override the normal trust logic if you know that a
+certain certificate is supposed to have signed the OCSP response, and
+you want to use it to check the signature.  This is achieved using
+\fB\-\-load\-signer\fP instead of \fB\-\-load\-trust\fP.  This will load
+one certificate and it will be used to verify the signature in the
+OCSP response.  It will not check the Extended Key Usage bit.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-e \-\-load\-signer ocsp\-signer.pem \
+           \-\-load\-response ocsp\-response.der
+.in -4
+.fi
+.sp
+This approach is normally only relevant in two situations.  The first
+is when the OCSP response does not contain a copy of the signer
+certificate, so the \fB\-\-load\-trust\fP code would fail.  The second
+is if you want to avoid the indirect mode where the OCSP response
+signer certificate is signed by a trust anchor.
+.sp
+.br
+\fBReal\-world example\fP
+.br
+.sp
+Here is an example of how to generate an OCSP request for a
+certificate and to verify the response.  For illustration we'll use
+the \fBblog.josefsson.org\fP host, which (as of writing) uses a
+certificate from CACert.  First we'll use \fBgnutls\-cli\fP to get a
+copy of the server certificate chain.  The server is not required to
+send this information, but this particular one is configured to do so.
+.sp
+.br
+.in +4
+.nf
+$ echo | gnutls\-cli \-p 443 blog.josefsson.org \-\-save\-cert chain.pem
+.in -4
+.fi
+.sp
+The saved certificates normally contain a pointer to where the OCSP
+responder is located, in the Authority Information Access Information
+extension.  For example, from \fBcerttool \-i < chain.pem\fP there is
+this information:
+.sp
+.br
+.in +4
+.nf
+		Authority Information Access Information (not critical):
+			Access Method: 1.3.6.1.5.5.7.48.1 (id\-ad\-ocsp)
+			Access Location URI: https://ocsp.CAcert.org/
+.in -4
+.fi
+.sp
+This means that ocsptool can discover the servers to contact over HTTP.
+We can now request information on the chain certificates.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-\-ask \-\-load\-chain chain.pem
+.in -4
+.fi
+.sp
+The request is sent via HTTP to the OCSP server address found in
+the certificates. It is possible to override the address of the
+OCSP server as well as ask information on a particular certificate
+using \-\-load\-cert and \-\-load\-issuer.
+.sp
+.br
+.in +4
+.nf
+$ ocsptool \-\-ask https://ocsp.CAcert.org/ \-\-load\-chain chain.pem
+.in -4
+.fi
 .SH "EXIT STATUS"
 One of the following exit values will be returned:
 .TP
@@ -175,6 +351,8 @@ Successful program execution.
 .NOP 1 " (EXIT_FAILURE)"
 The operation failed or the command syntax was not valid.
 .PP
+.SH "SEE ALSO"
+certtool (1)
 .SH "AUTHORS"
 
 .SH "COPYRIGHT"

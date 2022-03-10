@@ -10,7 +10,7 @@
 .ds B-Font B
 .ds I-Font I
 .ds R-Font R
-.TH gnutls-cli 1 "09 Mar 2022" "3.7.4" "User Commands"
+.TH gnutls-cli 1 "10 Mar 2022" "3.7.4" "User Commands"
 .SH NAME
 \f\*[B-Font]gnutls-cli\fP
 \- GnuTLS client
@@ -326,6 +326,11 @@ This option may appear an unlimited number of times.
 .sp
 This option will set and enable the Application Layer Protocol Negotiation  (ALPN) in the TLS protocol.
 .TP
+.NOP \f\*[B-Font]\-\-compress\-cert\f[]=\f\*[I-Font]str\f[]
+Compress certificate.
+.sp
+This option sets a list of supported compression methods for certificate compression. Use comma delimited list of compression methods such as "zlib,brotli,zstd".
+.TP
 .NOP \f\*[B-Font]\-b\f[], \f\*[B-Font]\-\-heartbeat\f[]
 Activate heartbeat support.
 .sp
@@ -384,6 +389,10 @@ This will override the default options in /etc/gnutls/pkcs11.conf
 .TP
 .NOP \f\*[B-Font]\-\-fips140\-mode\f[]
 Reports the status of the FIPS140-2 mode in gnutls library.
+.sp
+.TP
+.NOP \f\*[B-Font]\-\-list\-config\f[]
+Reports the configuration of the library.
 .sp
 .TP
 .NOP \f\*[B-Font]\-\-logfile\f[]=\f\*[I-Font]str\f[]

@@ -24,18 +24,15 @@
         {
           "long-option": "outfile",
           "description": "Output file",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "list",
-          "description": "Lists all stored keys",
-          "detail": ""
+          "description": "Lists all stored keys"
         },
         {
           "long-option": "delete",
           "description": "Delete the key identified by the given URL",
-          "detail": "",
           "argument-type": "string",
           "argument-name": "url"
         },

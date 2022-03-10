@@ -25,7 +25,6 @@
           "long-option": "keysize",
           "short-option": "s",
           "description": "Specify the key size in bytes (default is 32-bytes or 256-bits)",
-          "detail": "",
           "argument-range": {
             "min": 0,
             "max": 512
@@ -36,7 +35,6 @@
           "long-option": "username",
           "short-option": "u",
           "description": "Specify the username to use",
-          "detail": "",
           "argument-type": "string"
         },
         {

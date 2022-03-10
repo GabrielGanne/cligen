@@ -29,8 +29,7 @@
         },
         {
           "long-option": "sni-hostname-fatal",
-          "description": "Send fatal alert on sni-hostname mismatch",
-          "detail": ""
+          "description": "Send fatal alert on sni-hostname mismatch"
         },
         {
           "long-option": "alpn",
@@ -41,23 +40,19 @@
         },
         {
           "long-option": "alpn-fatal",
-          "description": "Send fatal alert on non-matching ALPN name",
-          "detail": ""
+          "description": "Send fatal alert on non-matching ALPN name"
         },
         {
           "long-option": "noticket",
-          "description": "Don't accept session tickets",
-          "detail": ""
+          "description": "Don't accept session tickets"
         },
         {
           "long-option": "earlydata",
-          "description": "Accept early data",
-          "detail": ""
+          "description": "Accept early data"
         },
         {
           "long-option": "maxearlydata",
           "description": "The maximum early data size to accept",
-          "detail": "",
           "argument-range": {
             "min": 1
           },
@@ -65,51 +60,42 @@
         },
         {
           "long-option": "nocookie",
-          "description": "Don't require cookie on DTLS sessions",
-          "detail": ""
+          "description": "Don't require cookie on DTLS sessions"
         },
         {
           "long-option": "generate",
           "short-option": "g",
-          "description": "Generate Diffie-Hellman parameters",
-          "detail": ""
+          "description": "Generate Diffie-Hellman parameters"
         },
         {
           "long-option": "quiet",
           "short-option": "q",
-          "description": "Suppress some messages",
-          "detail": ""
+          "description": "Suppress some messages"
         },
         {
           "long-option": "nodb",
-          "description": "Do not use a resumption database",
-          "detail": ""
+          "description": "Do not use a resumption database"
         },
         {
           "long-option": "http",
-          "description": "Act as an HTTP server",
-          "detail": ""
+          "description": "Act as an HTTP server"
         },
         {
           "long-option": "echo",
-          "description": "Act as an Echo server",
-          "detail": ""
+          "description": "Act as an Echo server"
         },
         {
           "long-option": "crlf",
-          "description": "Do not replace CRLF by LF in Echo server mode",
-          "detail": ""
+          "description": "Do not replace CRLF by LF in Echo server mode"
         },
         {
           "long-option": "udp",
           "short-option": "u",
-          "description": "Use DTLS (datagram TLS) over UDP",
-          "detail": ""
+          "description": "Use DTLS (datagram TLS) over UDP"
         },
         {
           "long-option": "mtu",
           "description": "Set MTU for datagram TLS",
-          "detail": "",
           "argument-range": {
             "min": 0,
             "max": 17000
@@ -119,14 +105,12 @@
         {
           "long-option": "srtp-profiles",
           "description": "Offer SRTP profiles",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "disable-client-cert",
           "short-option": "a",
           "description": "Do not request a client certificate",
-          "detail": "",
           "conflicts": [
             "require-client-cert"
           ]
@@ -143,6 +127,12 @@
           "detail": "Do not require, but if a client certificate is sent then verify it and close the connection if invalid."
         },
         {
+          "long-option": "compress-cert",
+          "description": "Compress certificate",
+          "detail": "This option sets a list of supported compression methods for certificate compression. Use comma delimited list of compression methods such as \"zlib,brotli,zstd\".",
+          "argument-type": "string"
+        },
+        {
           "long-option": "heartbeat",
           "short-option": "b",
           "description": "Activate heartbeat support",
@@ -150,8 +140,7 @@
         },
         {
           "long-option": "x509fmtder",
-          "description": "Use DER format for certificates to read from",
-          "detail": ""
+          "description": "Use DER format for certificates to read from"
         },
         {
           "long-option": "priority",
@@ -162,27 +151,23 @@
         {
           "long-option": "dhparams",
           "description": "DH params file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "x509cafile",
           "description": "Certificate file or PKCS #11 URL to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "x509crlfile",
           "description": "CRL file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "pgpkeyfile",
           "description": "PGP Key file to use",
-          "detail": "",
           "file-exists": true,
           "deprecated": true,
           "argument-type": "file"
@@ -245,28 +230,24 @@
         {
           "long-option": "srppasswd",
           "description": "SRP password file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "srppasswdconf",
           "description": "SRP password configuration file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "pskpasswd",
           "description": "PSK password file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "pskhint",
           "description": "PSK identity hint to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -285,7 +266,6 @@
           "long-option": "port",
           "short-option": "p",
           "description": "The port to connect to",
-          "detail": "",
           "argument-type": "number"
         },
         {
@@ -304,19 +284,16 @@
         {
           "long-option": "keymatexport",
           "description": "Label used for exporting keying material",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "keymatexportsize",
           "description": "Size of the exported keying material",
-          "detail": "",
           "argument-type": "number"
         },
         {
           "long-option": "recordsize",
           "description": "The maximum record size to advertise",
-          "detail": "",
           "argument-range": {
             "min": 0,
             "max": 16384
@@ -326,7 +303,6 @@
         {
           "long-option": "httpdata",
           "description": "The data used as HTTP response",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         }

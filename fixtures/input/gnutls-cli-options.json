@@ -26,8 +26,7 @@
         {
           "long-option": "verbose",
           "short-option": "V",
-          "description": "More verbose output",
-          "detail": ""
+          "description": "More verbose output"
         },
         {
           "long-option": "tofu",
@@ -75,7 +74,6 @@
         {
           "long-option": "earlydata",
           "description": "Send early data on resumption from the specified file",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -118,13 +116,11 @@
         {
           "long-option": "udp",
           "short-option": "u",
-          "description": "Use DTLS (datagram TLS) over UDP",
-          "detail": ""
+          "description": "Use DTLS (datagram TLS) over UDP"
         },
         {
           "long-option": "mtu",
           "description": "Set MTU for datagram TLS",
-          "detail": "",
           "argument-range": {
             "min": 0,
             "max": 17000
@@ -133,34 +129,28 @@
         },
         {
           "long-option": "crlf",
-          "description": "Send CR LF instead of LF",
-          "detail": ""
+          "description": "Send CR LF instead of LF"
         },
         {
           "long-option": "fastopen",
-          "description": "Enable TCP Fast Open",
-          "detail": ""
+          "description": "Enable TCP Fast Open"
         },
         {
           "long-option": "x509fmtder",
-          "description": "Use DER format for certificates to read from",
-          "detail": ""
+          "description": "Use DER format for certificates to read from"
         },
         {
           "long-option": "print-cert",
-          "description": "Print peer's certificate in PEM format",
-          "detail": ""
+          "description": "Print peer's certificate in PEM format"
         },
         {
           "long-option": "save-cert",
           "description": "Save the peer's certificate chain in the specified file in PEM format",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "save-ocsp",
           "description": "Save the peer's OCSP status response in the provided file",
-          "detail": "",
           "conflicts": [
             "save-ocsp-multi"
           ],
@@ -178,13 +168,11 @@
         {
           "long-option": "save-server-trace",
           "description": "Save the server-side TLS message trace in the provided file",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "save-client-trace",
           "description": "Save the client-side TLS message trace in the provided file",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -202,26 +190,22 @@
         {
           "long-option": "x509cafile",
           "description": "Certificate file or PKCS #11 URL to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "x509crlfile",
           "description": "CRL file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "x509keyfile",
           "description": "X.509 key file or PKCS #11 URL to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "x509certfile",
           "description": "X.509 Certificate file or PKCS #11 URL to use",
-          "detail": "",
           "requires": [
             "x509keyfile"
           ],
@@ -245,43 +229,36 @@
         {
           "long-option": "srpusername",
           "description": "SRP username to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "srppasswd",
           "description": "SRP password to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "pskusername",
           "description": "PSK username to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "pskkey",
           "description": "PSK key (in hex) to use",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "port",
           "short-option": "p",
           "description": "The port or service to connect to",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "insecure",
-          "description": "Don't abort program if server certificate can't be validated",
-          "detail": ""
+          "description": "Don't abort program if server certificate can't be validated"
         },
         {
           "long-option": "verify-allow-broken",
-          "description": "Allow broken algorithms, such as MD5 for certificate verification",
-          "detail": ""
+          "description": "Allow broken algorithms, such as MD5 for certificate verification"
         },
         {
           "long-option": "ranges",
@@ -296,8 +273,7 @@
         },
         {
           "long-option": "benchmark-tls-kx",
-          "description": "Benchmark TLS key exchange methods",
-          "detail": ""
+          "description": "Benchmark TLS key exchange methods"
         },
         {
           "long-option": "benchmark-tls-ciphers",
@@ -326,7 +302,6 @@
         {
           "long-option": "srtp-profiles",
           "description": "Offer SRTP profiles",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -337,15 +312,19 @@
           "multiple": true
         },
         {
+          "long-option": "compress-cert",
+          "description": "Compress certificate",
+          "detail": "This option sets a list of supported compression methods for certificate compression. Use comma delimited list of compression methods such as \"zlib,brotli,zstd\".",
+          "argument-type": "string"
+        },
+        {
           "long-option": "heartbeat",
           "short-option": "b",
-          "description": "Activate heartbeat support",
-          "detail": ""
+          "description": "Activate heartbeat support"
         },
         {
           "long-option": "recordsize",
           "description": "The maximum record size to advertise",
-          "detail": "",
           "argument-range": {
             "min": 0,
             "max": 4096
@@ -354,8 +333,7 @@
         },
         {
           "long-option": "disable-sni",
-          "description": "Do not send a Server Name Indication (SNI)",
-          "detail": ""
+          "description": "Do not send a Server Name Indication (SNI)"
         },
         {
           "long-option": "disable-extensions",
@@ -393,8 +371,11 @@
         },
         {
           "long-option": "fips140-mode",
-          "description": "Reports the status of the FIPS140-2 mode in gnutls library",
-          "detail": ""
+          "description": "Reports the status of the FIPS140-2 mode in gnutls library"
+        },
+        {
+          "long-option": "list-config",
+          "description": "Reports the configuration of the library"
         },
         {
           "long-option": "logfile",
@@ -405,13 +386,11 @@
         {
           "long-option": "keymatexport",
           "description": "Label used for exporting keying material",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "keymatexportsize",
           "description": "Size of the exported keying material",
-          "detail": "",
           "argument-type": "number"
         },
         {

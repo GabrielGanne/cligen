@@ -19,8 +19,7 @@
       "options": [
         {
           "long-option": "list-tokens",
-          "description": "List all available tokens",
-          "detail": ""
+          "description": "List all available tokens"
         },
         {
           "long-option": "list-token-urls",
@@ -29,18 +28,15 @@
         },
         {
           "long-option": "list-mechanisms",
-          "description": "List all available mechanisms in a token",
-          "detail": ""
+          "description": "List all available mechanisms in a token"
         },
         {
           "long-option": "initialize",
-          "description": "Initializes a PKCS #11 token",
-          "detail": ""
+          "description": "Initializes a PKCS #11 token"
         },
         {
           "long-option": "initialize-pin",
-          "description": "Initializes/Resets a PKCS #11 token user PIN",
-          "detail": ""
+          "description": "Initializes/Resets a PKCS #11 token user PIN"
         },
         {
           "long-option": "initialize-so-pin",
@@ -95,13 +91,11 @@
         },
         {
           "long-option": "list-all-trusted",
-          "description": "List all available certificates marked as trusted",
-          "detail": ""
+          "description": "List all available certificates marked as trusted"
         },
         {
           "long-option": "export",
           "description": "Export the object specified by the URL",
-          "detail": "",
           "conflicts": [
             "export-stapled",
             "export-chain",
@@ -140,8 +134,7 @@
         },
         {
           "long-option": "info",
-          "description": "List information on an available object in a token",
-          "detail": ""
+          "description": "List information on an available object in a token"
         },
         {
           "long-option": "trusted",
@@ -232,13 +225,11 @@
         },
         {
           "long-option": "delete",
-          "description": "Deletes the objects matching the given PKCS #11 URL",
-          "detail": ""
+          "description": "Deletes the objects matching the given PKCS #11 URL"
         },
         {
           "long-option": "label",
           "description": "Sets a label for the write operation",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -317,21 +308,18 @@
         {
           "long-option": "load-privkey",
           "description": "Private key file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "load-pubkey",
           "description": "Public key file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "load-certificate",
           "description": "Certificate file to use",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         }
@@ -355,13 +343,11 @@
         {
           "long-option": "outfile",
           "description": "Output file",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "login",
           "description": "Force (user) login to token",
-          "detail": "",
           "disable-prefix": "no-"
         },
         {
@@ -400,8 +386,7 @@
         {
           "long-option": "pkcs8",
           "short-option": "8",
-          "description": "Use PKCS #8 format for private keys",
-          "detail": ""
+          "description": "Use PKCS #8 format for private keys"
         },
         {
           "long-option": "inder",
@@ -439,13 +424,11 @@
         {
           "long-option": "detailed-url",
           "description": "Print detailed URLs",
-          "detail": "",
           "disable-prefix": "no-"
         },
         {
           "long-option": "only-urls",
-          "description": "Print a compact listing using only the URLs",
-          "detail": ""
+          "description": "Print a compact listing using only the URLs"
         },
         {
           "long-option": "batch",

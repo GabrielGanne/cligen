@@ -97,34 +97,35 @@ static const struct option long_options[] =
   { "disable-client-cert", no_argument, 0, 'a' },
   { "require-client-cert", no_argument, 0, 'r' },
   { "verify-client-cert", no_argument, 0, CHAR_MAX + 15 },
+  { "compress-cert", required_argument, 0, CHAR_MAX + 16 },
   { "heartbeat", no_argument, 0, 'b' },
-  { "x509fmtder", no_argument, 0, CHAR_MAX + 16 },
-  { "priority", required_argument, 0, CHAR_MAX + 17 },
-  { "dhparams", required_argument, 0, CHAR_MAX + 18 },
-  { "x509cafile", required_argument, 0, CHAR_MAX + 19 },
-  { "x509crlfile", required_argument, 0, CHAR_MAX + 20 },
-  { "pgpkeyfile", required_argument, 0, CHAR_MAX + 21 },
-  { "x509keyfile", required_argument, 0, CHAR_MAX + 22 },
-  { "x509dsakeyfile", required_argument, 0, CHAR_MAX + 24 },
-  { "x509ecckeyfile", required_argument, 0, CHAR_MAX + 26 },
-  { "x509certfile", required_argument, 0, CHAR_MAX + 23 },
-  { "x509dsacertfile", required_argument, 0, CHAR_MAX + 25 },
-  { "x509ecccertfile", required_argument, 0, CHAR_MAX + 27 },
-  { "rawpkkeyfile", required_argument, 0, CHAR_MAX + 28 },
-  { "rawpkfile", required_argument, 0, CHAR_MAX + 29 },
-  { "srppasswd", required_argument, 0, CHAR_MAX + 30 },
-  { "srppasswdconf", required_argument, 0, CHAR_MAX + 31 },
-  { "pskpasswd", required_argument, 0, CHAR_MAX + 32 },
-  { "pskhint", required_argument, 0, CHAR_MAX + 33 },
-  { "ocsp-response", required_argument, 0, CHAR_MAX + 34 },
-  { "ignore-ocsp-response-errors", no_argument, 0, CHAR_MAX + 35 },
+  { "x509fmtder", no_argument, 0, CHAR_MAX + 17 },
+  { "priority", required_argument, 0, CHAR_MAX + 18 },
+  { "dhparams", required_argument, 0, CHAR_MAX + 19 },
+  { "x509cafile", required_argument, 0, CHAR_MAX + 20 },
+  { "x509crlfile", required_argument, 0, CHAR_MAX + 21 },
+  { "pgpkeyfile", required_argument, 0, CHAR_MAX + 22 },
+  { "x509keyfile", required_argument, 0, CHAR_MAX + 23 },
+  { "x509dsakeyfile", required_argument, 0, CHAR_MAX + 25 },
+  { "x509ecckeyfile", required_argument, 0, CHAR_MAX + 27 },
+  { "x509certfile", required_argument, 0, CHAR_MAX + 24 },
+  { "x509dsacertfile", required_argument, 0, CHAR_MAX + 26 },
+  { "x509ecccertfile", required_argument, 0, CHAR_MAX + 28 },
+  { "rawpkkeyfile", required_argument, 0, CHAR_MAX + 29 },
+  { "rawpkfile", required_argument, 0, CHAR_MAX + 30 },
+  { "srppasswd", required_argument, 0, CHAR_MAX + 31 },
+  { "srppasswdconf", required_argument, 0, CHAR_MAX + 32 },
+  { "pskpasswd", required_argument, 0, CHAR_MAX + 33 },
+  { "pskhint", required_argument, 0, CHAR_MAX + 34 },
+  { "ocsp-response", required_argument, 0, CHAR_MAX + 35 },
+  { "ignore-ocsp-response-errors", no_argument, 0, CHAR_MAX + 36 },
   { "port", required_argument, 0, 'p' },
   { "list", no_argument, 0, 'l' },
-  { "provider", required_argument, 0, CHAR_MAX + 36 },
-  { "keymatexport", required_argument, 0, CHAR_MAX + 37 },
-  { "keymatexportsize", required_argument, 0, CHAR_MAX + 38 },
-  { "recordsize", required_argument, 0, CHAR_MAX + 39 },
-  { "httpdata", required_argument, 0, CHAR_MAX + 40 },
+  { "provider", required_argument, 0, CHAR_MAX + 37 },
+  { "keymatexport", required_argument, 0, CHAR_MAX + 38 },
+  { "keymatexportsize", required_argument, 0, CHAR_MAX + 39 },
+  { "recordsize", required_argument, 0, CHAR_MAX + 40 },
+  { "httpdata", required_argument, 0, CHAR_MAX + 41 },
   { "version", optional_argument, 0, 'v' },
   { "help", no_argument, 0, 'h' },
   { "more-help", no_argument, 0, '!' },
@@ -238,89 +239,94 @@ process_options (int argc, char **argv)
         opts->present.verify_client_cert = true;
         opts->enabled.verify_client_cert = true;
         break;
+      case CHAR_MAX + 16: /* --compress-cert */
+        opts->present.compress_cert = true;
+        opts->arg.compress_cert = optarg;
+        opts->enabled.compress_cert = true;
+        break;
       case 'b':
         opts->present.heartbeat = true;
         opts->enabled.heartbeat = true;
         break;
-      case CHAR_MAX + 16: /* --x509fmtder */
+      case CHAR_MAX + 17: /* --x509fmtder */
         opts->present.x509fmtder = true;
         opts->enabled.x509fmtder = true;
         break;
-      case CHAR_MAX + 17: /* --priority */
+      case CHAR_MAX + 18: /* --priority */
         opts->present.priority = true;
         opts->arg.priority = optarg;
         opts->enabled.priority = true;
         break;
-      case CHAR_MAX + 18: /* --dhparams */
+      case CHAR_MAX + 19: /* --dhparams */
         opts->present.dhparams = true;
         opts->arg.dhparams = optarg;
         opts->enabled.dhparams = true;
         break;
-      case CHAR_MAX + 19: /* --x509cafile */
+      case CHAR_MAX + 20: /* --x509cafile */
         opts->present.x509cafile = true;
         opts->arg.x509cafile = optarg;
         opts->enabled.x509cafile = true;
         break;
-      case CHAR_MAX + 20: /* --x509crlfile */
+      case CHAR_MAX + 21: /* --x509crlfile */
         opts->present.x509crlfile = true;
         opts->arg.x509crlfile = optarg;
         opts->enabled.x509crlfile = true;
         break;
-      case CHAR_MAX + 21: /* --pgpkeyfile */
+      case CHAR_MAX + 22: /* --pgpkeyfile */
         opts->present.pgpkeyfile = true;
         opts->arg.pgpkeyfile = optarg;
         opts->enabled.pgpkeyfile = true;
         break;
-      case CHAR_MAX + 22: /* --x509keyfile */
-      case CHAR_MAX + 24: /* --x509dsakeyfile */
-      case CHAR_MAX + 26: /* --x509ecckeyfile */
+      case CHAR_MAX + 23: /* --x509keyfile */
+      case CHAR_MAX + 25: /* --x509dsakeyfile */
+      case CHAR_MAX + 27: /* --x509ecckeyfile */
         opts->present.x509keyfile = true;
         append_to_list (&opts->list.x509keyfile, "x509keyfile", optarg);
         opts->enabled.x509keyfile = true;
         break;
-      case CHAR_MAX + 23: /* --x509certfile */
-      case CHAR_MAX + 25: /* --x509dsacertfile */
-      case CHAR_MAX + 27: /* --x509ecccertfile */
+      case CHAR_MAX + 24: /* --x509certfile */
+      case CHAR_MAX + 26: /* --x509dsacertfile */
+      case CHAR_MAX + 28: /* --x509ecccertfile */
         opts->present.x509certfile = true;
         append_to_list (&opts->list.x509certfile, "x509certfile", optarg);
         opts->enabled.x509certfile = true;
         break;
-      case CHAR_MAX + 28: /* --rawpkkeyfile */
+      case CHAR_MAX + 29: /* --rawpkkeyfile */
         opts->present.rawpkkeyfile = true;
         append_to_list (&opts->list.rawpkkeyfile, "rawpkkeyfile", optarg);
         opts->enabled.rawpkkeyfile = true;
         break;
-      case CHAR_MAX + 29: /* --rawpkfile */
+      case CHAR_MAX + 30: /* --rawpkfile */
         opts->present.rawpkfile = true;
         append_to_list (&opts->list.rawpkfile, "rawpkfile", optarg);
         opts->enabled.rawpkfile = true;
         break;
-      case CHAR_MAX + 30: /* --srppasswd */
+      case CHAR_MAX + 31: /* --srppasswd */
         opts->present.srppasswd = true;
         opts->arg.srppasswd = optarg;
         opts->enabled.srppasswd = true;
         break;
-      case CHAR_MAX + 31: /* --srppasswdconf */
+      case CHAR_MAX + 32: /* --srppasswdconf */
         opts->present.srppasswdconf = true;
         opts->arg.srppasswdconf = optarg;
         opts->enabled.srppasswdconf = true;
         break;
-      case CHAR_MAX + 32: /* --pskpasswd */
+      case CHAR_MAX + 33: /* --pskpasswd */
         opts->present.pskpasswd = true;
         opts->arg.pskpasswd = optarg;
         opts->enabled.pskpasswd = true;
         break;
-      case CHAR_MAX + 33: /* --pskhint */
+      case CHAR_MAX + 34: /* --pskhint */
         opts->present.pskhint = true;
         opts->arg.pskhint = optarg;
         opts->enabled.pskhint = true;
         break;
-      case CHAR_MAX + 34: /* --ocsp-response */
+      case CHAR_MAX + 35: /* --ocsp-response */
         opts->present.ocsp_response = true;
         append_to_list (&opts->list.ocsp_response, "ocsp-response", optarg);
         opts->enabled.ocsp_response = true;
         break;
-      case CHAR_MAX + 35: /* --ignore-ocsp-response-errors */
+      case CHAR_MAX + 36: /* --ignore-ocsp-response-errors */
         opts->present.ignore_ocsp_response_errors = true;
         opts->enabled.ignore_ocsp_response_errors = true;
         break;
@@ -334,29 +340,29 @@ process_options (int argc, char **argv)
         opts->present.list = true;
         opts->enabled.list = true;
         break;
-      case CHAR_MAX + 36: /* --provider */
+      case CHAR_MAX + 37: /* --provider */
         opts->present.provider = true;
         opts->arg.provider = optarg;
         opts->enabled.provider = true;
         break;
-      case CHAR_MAX + 37: /* --keymatexport */
+      case CHAR_MAX + 38: /* --keymatexport */
         opts->present.keymatexport = true;
         opts->arg.keymatexport = optarg;
         opts->enabled.keymatexport = true;
         break;
-      case CHAR_MAX + 38: /* --keymatexportsize */
+      case CHAR_MAX + 39: /* --keymatexportsize */
         opts->present.keymatexportsize = true;
         opts->arg.keymatexportsize = optarg;
         opts->value.keymatexportsize = parse_number(optarg);
         opts->enabled.keymatexportsize = true;
         break;
-      case CHAR_MAX + 39: /* --recordsize */
+      case CHAR_MAX + 40: /* --recordsize */
         opts->present.recordsize = true;
         opts->arg.recordsize = optarg;
         opts->value.recordsize = parse_number(optarg);
         opts->enabled.recordsize = true;
         break;
-      case CHAR_MAX + 40: /* --httpdata */
+      case CHAR_MAX + 41: /* --httpdata */
         opts->present.httpdata = true;
         opts->arg.httpdata = optarg;
         opts->enabled.httpdata = true;
@@ -585,6 +591,7 @@ usage (FILE *out, int status)
     "				- prohibits the option 'require-client-cert'\n"
     "   -r, --require-client-cert  Require a client certificate\n"
     "       --verify-client-cert   If a client certificate is sent then verify it\n"
+    "       --compress-cert=str    Compress certificate\n"
     "   -b, --heartbeat            Activate heartbeat support\n"
     "       --x509fmtder           Use DER format for certificates to read from\n"
     "       --priority=str         Priorities string\n"

@@ -24,14 +24,12 @@
         {
           "long-option": "infile",
           "description": "Input file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "outfile",
           "description": "Output file",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -42,7 +40,6 @@
         {
           "long-option": "register",
           "description": "Any generated key will be registered in the TPM",
-          "detail": "",
           "requires": [
             "generate-rsa"
           ]
@@ -50,7 +47,6 @@
         {
           "long-option": "signing",
           "description": "Any generated key will be a signing key",
-          "detail": "",
           "conflicts": [
             "legacy"
           ],
@@ -61,7 +57,6 @@
         {
           "long-option": "legacy",
           "description": "Any generated key will be a legacy key",
-          "detail": "",
           "conflicts": [
             "signing"
           ],
@@ -94,19 +89,16 @@
         {
           "long-option": "pubkey",
           "description": "Prints the public key of the provided key",
-          "detail": "",
           "argument-type": "string",
           "argument-name": "url"
         },
         {
           "long-option": "list",
-          "description": "Lists all stored keys in the TPM",
-          "detail": ""
+          "description": "Lists all stored keys in the TPM"
         },
         {
           "long-option": "delete",
           "description": "Delete the key identified by the given URL (UUID)",
-          "detail": "",
           "argument-type": "string",
           "argument-name": "url"
         },
@@ -127,7 +119,6 @@
         {
           "long-option": "bits",
           "description": "Specify the number of bits for key generate",
-          "detail": "",
           "argument-type": "number"
         },
         {

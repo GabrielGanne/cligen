@@ -24,13 +24,11 @@
         {
           "long-option": "verbose",
           "short-option": "V",
-          "description": "More verbose output",
-          "detail": ""
+          "description": "More verbose output"
         },
         {
           "long-option": "outfile",
           "description": "Output file",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -98,7 +96,6 @@
         {
           "long-option": "port",
           "description": "The port or service to connect to, for DANE data",
-          "detail": "",
           "argument-type": "string"
         },
         {

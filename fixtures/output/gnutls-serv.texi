@@ -51,6 +51,7 @@ None:
 				- prohibits the option 'require-client-cert'
    -r, --require-client-cert  Require a client certificate
        --verify-client-cert   If a client certificate is sent then verify it
+       --compress-cert=str    Compress certificate
    -b, --heartbeat            Activate heartbeat support
        --x509fmtder           Use DER format for certificates to read from
        --priority=str         Priorities string
@@ -128,6 +129,12 @@ Since 3.6.0 it will no longer verify the certificate by default.
 
 This is the ``if a client certificate is sent then verify it'' option.
 Do not require, but if a client certificate is sent then verify it and close the connection if invalid.
+@subheading compress-cert option.
+@anchor{gnutls-serv compress-cert}
+
+This is the ``compress certificate'' option.
+This option takes a ArgumentType.STRING argument.
+This option sets a list of supported compression methods for certificate compression. Use comma delimited list of compression methods such as "zlib,brotli,zstd".
 @subheading heartbeat option (-b).
 @anchor{gnutls-serv heartbeat}
 

@@ -24,20 +24,17 @@
         {
           "long-option": "verbose",
           "short-option": "V",
-          "description": "More verbose output",
-          "detail": ""
+          "description": "More verbose output"
         },
         {
           "long-option": "infile",
           "description": "Input file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "outfile",
           "description": "Output file",
-          "detail": "",
           "argument-type": "string"
         },
         {
@@ -69,33 +66,28 @@
         {
           "long-option": "generate-request",
           "short-option": "q",
-          "description": "Generates an OCSP request",
-          "detail": ""
+          "description": "Generates an OCSP request"
         },
         {
           "long-option": "nonce",
           "description": "Use (or not) a nonce to OCSP request",
-          "detail": "",
           "disable-prefix": "no-"
         },
         {
           "long-option": "load-chain",
           "description": "Reads a set of certificates forming a chain from file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "load-issuer",
           "description": "Reads issuer's certificate from file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "load-cert",
           "description": "Reads the certificate to check from file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
@@ -112,7 +104,6 @@
         {
           "long-option": "load-signer",
           "description": "Reads the OCSP response signer from file",
-          "detail": "",
           "file-exists": true,
           "conflicts": [
             "load-trust"
@@ -122,7 +113,6 @@
         {
           "long-option": "inder",
           "description": "Use DER format for input certificates and private keys",
-          "detail": "",
           "disable-prefix": "no-"
         },
         {
@@ -139,7 +129,6 @@
           "long-option": "load-request",
           "short-option": "Q",
           "description": "Reads the DER encoded OCSP request from file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
@@ -147,14 +136,12 @@
           "long-option": "load-response",
           "short-option": "S",
           "description": "Reads the DER encoded OCSP response from file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "ignore-errors",
-          "description": "Ignore any verification errors",
-          "detail": ""
+          "description": "Ignore any verification errors"
         },
         {
           "long-option": "verify-allow-broken",

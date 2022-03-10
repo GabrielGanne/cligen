@@ -26,14 +26,12 @@
         {
           "long-option": "verbose",
           "short-option": "V",
-          "description": "More verbose output",
-          "detail": ""
+          "description": "More verbose output"
         },
         {
           "long-option": "port",
           "short-option": "p",
           "description": "The port to connect to",
-          "detail": "",
           "argument-range": {
             "min": 0,
             "max": 65536

@@ -133,22 +133,24 @@ static const struct option long_options[] =
   { "noticket", no_argument, 0, CHAR_MAX + 47 },
   { "srtp-profiles", required_argument, 0, CHAR_MAX + 48 },
   { "alpn", required_argument, 0, CHAR_MAX + 49 },
+  { "compress-cert", required_argument, 0, CHAR_MAX + 50 },
   { "heartbeat", no_argument, 0, 'b' },
-  { "recordsize", required_argument, 0, CHAR_MAX + 50 },
-  { "disable-sni", no_argument, 0, CHAR_MAX + 51 },
-  { "disable-extensions", no_argument, 0, CHAR_MAX + 52 },
-  { "single-key-share", no_argument, 0, CHAR_MAX + 53 },
-  { "post-handshake-auth", no_argument, 0, CHAR_MAX + 54 },
-  { "inline-commands", no_argument, 0, CHAR_MAX + 55 },
-  { "inline-commands-prefix", required_argument, 0, CHAR_MAX + 56 },
-  { "provider", required_argument, 0, CHAR_MAX + 57 },
-  { "fips140-mode", no_argument, 0, CHAR_MAX + 58 },
-  { "logfile", required_argument, 0, CHAR_MAX + 59 },
-  { "keymatexport", required_argument, 0, CHAR_MAX + 60 },
-  { "keymatexportsize", required_argument, 0, CHAR_MAX + 61 },
-  { "waitresumption", no_argument, 0, CHAR_MAX + 62 },
-  { "ca-auto-retrieve", no_argument, 0, CHAR_MAX + 63 },
-  { "no-ca-auto-retrieve", no_argument, 0, CHAR_MAX + 64 },
+  { "recordsize", required_argument, 0, CHAR_MAX + 51 },
+  { "disable-sni", no_argument, 0, CHAR_MAX + 52 },
+  { "disable-extensions", no_argument, 0, CHAR_MAX + 53 },
+  { "single-key-share", no_argument, 0, CHAR_MAX + 54 },
+  { "post-handshake-auth", no_argument, 0, CHAR_MAX + 55 },
+  { "inline-commands", no_argument, 0, CHAR_MAX + 56 },
+  { "inline-commands-prefix", required_argument, 0, CHAR_MAX + 57 },
+  { "provider", required_argument, 0, CHAR_MAX + 58 },
+  { "fips140-mode", no_argument, 0, CHAR_MAX + 59 },
+  { "list-config", no_argument, 0, CHAR_MAX + 60 },
+  { "logfile", required_argument, 0, CHAR_MAX + 61 },
+  { "keymatexport", required_argument, 0, CHAR_MAX + 62 },
+  { "keymatexportsize", required_argument, 0, CHAR_MAX + 63 },
+  { "waitresumption", no_argument, 0, CHAR_MAX + 64 },
+  { "ca-auto-retrieve", no_argument, 0, CHAR_MAX + 65 },
+  { "no-ca-auto-retrieve", no_argument, 0, CHAR_MAX + 66 },
   { "version", optional_argument, 0, 'v' },
   { "help", no_argument, 0, 'h' },
   { "more-help", no_argument, 0, '!' },
@@ -423,75 +425,84 @@ process_options (int argc, char **argv)
         append_to_list (&opts->list.alpn, "alpn", optarg);
         opts->enabled.alpn = true;
         break;
+      case CHAR_MAX + 50: /* --compress-cert */
+        opts->present.compress_cert = true;
+        opts->arg.compress_cert = optarg;
+        opts->enabled.compress_cert = true;
+        break;
       case 'b':
         opts->present.heartbeat = true;
         opts->enabled.heartbeat = true;
         break;
-      case CHAR_MAX + 50: /* --recordsize */
+      case CHAR_MAX + 51: /* --recordsize */
         opts->present.recordsize = true;
         opts->arg.recordsize = optarg;
         opts->value.recordsize = parse_number(optarg);
         opts->enabled.recordsize = true;
         break;
-      case CHAR_MAX + 51: /* --disable-sni */
+      case CHAR_MAX + 52: /* --disable-sni */
         opts->present.disable_sni = true;
         opts->enabled.disable_sni = true;
         break;
-      case CHAR_MAX + 52: /* --disable-extensions */
+      case CHAR_MAX + 53: /* --disable-extensions */
         opts->present.disable_extensions = true;
         opts->enabled.disable_extensions = true;
         break;
-      case CHAR_MAX + 53: /* --single-key-share */
+      case CHAR_MAX + 54: /* --single-key-share */
         opts->present.single_key_share = true;
         opts->enabled.single_key_share = true;
         break;
-      case CHAR_MAX + 54: /* --post-handshake-auth */
+      case CHAR_MAX + 55: /* --post-handshake-auth */
         opts->present.post_handshake_auth = true;
         opts->enabled.post_handshake_auth = true;
         break;
-      case CHAR_MAX + 55: /* --inline-commands */
+      case CHAR_MAX + 56: /* --inline-commands */
         opts->present.inline_commands = true;
         opts->enabled.inline_commands = true;
         break;
-      case CHAR_MAX + 56: /* --inline-commands-prefix */
+      case CHAR_MAX + 57: /* --inline-commands-prefix */
         opts->present.inline_commands_prefix = true;
         opts->arg.inline_commands_prefix = optarg;
         opts->enabled.inline_commands_prefix = true;
         break;
-      case CHAR_MAX + 57: /* --provider */
+      case CHAR_MAX + 58: /* --provider */
         opts->present.provider = true;
         opts->arg.provider = optarg;
         opts->enabled.provider = true;
         break;
-      case CHAR_MAX + 58: /* --fips140-mode */
+      case CHAR_MAX + 59: /* --fips140-mode */
         opts->present.fips140_mode = true;
         opts->enabled.fips140_mode = true;
         break;
-      case CHAR_MAX + 59: /* --logfile */
+      case CHAR_MAX + 60: /* --list-config */
+        opts->present.list_config = true;
+        opts->enabled.list_config = true;
+        break;
+      case CHAR_MAX + 61: /* --logfile */
         opts->present.logfile = true;
         opts->arg.logfile = optarg;
         opts->enabled.logfile = true;
         break;
-      case CHAR_MAX + 60: /* --keymatexport */
+      case CHAR_MAX + 62: /* --keymatexport */
         opts->present.keymatexport = true;
         opts->arg.keymatexport = optarg;
         opts->enabled.keymatexport = true;
         break;
-      case CHAR_MAX + 61: /* --keymatexportsize */
+      case CHAR_MAX + 63: /* --keymatexportsize */
         opts->present.keymatexportsize = true;
         opts->arg.keymatexportsize = optarg;
         opts->value.keymatexportsize = parse_number(optarg);
         opts->enabled.keymatexportsize = true;
         break;
-      case CHAR_MAX + 62: /* --waitresumption */
+      case CHAR_MAX + 64: /* --waitresumption */
         opts->present.waitresumption = true;
         opts->enabled.waitresumption = true;
         break;
-      case CHAR_MAX + 63: /* --ca-auto-retrieve */
+      case CHAR_MAX + 65: /* --ca-auto-retrieve */
         opts->present.ca_auto_retrieve = true;
         opts->enabled.ca_auto_retrieve = true;
         break;
-      case CHAR_MAX + 64: /* --no-ca-auto-retrieve */
+      case CHAR_MAX + 66: /* --no-ca-auto-retrieve */
         opts->present.ca_auto_retrieve = true;
         opts->enabled.ca_auto_retrieve = false;
         break;
@@ -760,6 +771,7 @@ usage (FILE *out, int status)
     "       --noticket             Don't allow session tickets\n"
     "       --srtp-profiles=str    Offer SRTP profiles\n"
     "       --alpn=str             Application layer protocol\n"
+    "       --compress-cert=str    Compress certificate\n"
     "   -b, --heartbeat            Activate heartbeat support\n"
     "       --recordsize=num       The maximum record size to advertise\n"
     "				- it must be in the range:\n"
@@ -772,6 +784,7 @@ usage (FILE *out, int status)
     "       --provider=file        Specify the PKCS #11 provider library\n"
     "				- file must pre-exist\n"
     "       --fips140-mode         Reports the status of the FIPS140-2 mode in gnutls library\n"
+    "       --list-config          Reports the configuration of the library\n"
     "       --logfile=str          Redirect informational messages to a specific file\n"
     "       --keymatexport=str     Label used for exporting keying material\n"
     "       --keymatexportsize=num Size of the exported keying material\n"

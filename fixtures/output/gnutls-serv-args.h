@@ -36,6 +36,7 @@ struct gnutls_serv_options
     bool disable_client_cert;
     bool require_client_cert;
     bool verify_client_cert;
+    bool compress_cert;
     bool heartbeat;
     bool x509fmtder;
     bool priority;
@@ -73,6 +74,7 @@ struct gnutls_serv_options
     const char *maxearlydata;
     const char *mtu;
     const char *srtp_profiles;
+    const char *compress_cert;
     const char *priority;
     const char *dhparams;
     const char *x509cafile;
@@ -137,6 +139,7 @@ struct gnutls_serv_options
     bool disable_client_cert;
     bool require_client_cert;
     bool verify_client_cert;
+    bool compress_cert;
     bool heartbeat;
     bool x509fmtder;
     bool priority;
@@ -195,6 +198,7 @@ struct gnutls_serv_options
 #define HAVE_OPT_DISABLE_CLIENT_CERT gnutls_serv_options.present.disable_client_cert
 #define HAVE_OPT_REQUIRE_CLIENT_CERT gnutls_serv_options.present.require_client_cert
 #define HAVE_OPT_VERIFY_CLIENT_CERT gnutls_serv_options.present.verify_client_cert
+#define HAVE_OPT_COMPRESS_CERT gnutls_serv_options.present.compress_cert
 #define HAVE_OPT_HEARTBEAT gnutls_serv_options.present.heartbeat
 #define HAVE_OPT_X509FMTDER gnutls_serv_options.present.x509fmtder
 #define HAVE_OPT_PRIORITY gnutls_serv_options.present.priority
@@ -244,6 +248,7 @@ struct gnutls_serv_options
 #define OPT_ARG_DISABLE_CLIENT_CERT gnutls_serv_options.arg.disable_client_cert
 #define OPT_ARG_REQUIRE_CLIENT_CERT gnutls_serv_options.arg.require_client_cert
 #define OPT_ARG_VERIFY_CLIENT_CERT gnutls_serv_options.arg.verify_client_cert
+#define OPT_ARG_COMPRESS_CERT gnutls_serv_options.arg.compress_cert
 #define OPT_ARG_HEARTBEAT gnutls_serv_options.arg.heartbeat
 #define OPT_ARG_X509FMTDER gnutls_serv_options.arg.x509fmtder
 #define OPT_ARG_PRIORITY gnutls_serv_options.arg.priority
@@ -300,6 +305,7 @@ struct gnutls_serv_options
 #define ENABLED_OPT_DISABLE_CLIENT_CERT gnutls_serv_options.enabled.disable_client_cert
 #define ENABLED_OPT_REQUIRE_CLIENT_CERT gnutls_serv_options.enabled.require_client_cert
 #define ENABLED_OPT_VERIFY_CLIENT_CERT gnutls_serv_options.enabled.verify_client_cert
+#define ENABLED_OPT_COMPRESS_CERT gnutls_serv_options.enabled.compress_cert
 #define ENABLED_OPT_HEARTBEAT gnutls_serv_options.enabled.heartbeat
 #define ENABLED_OPT_X509FMTDER gnutls_serv_options.enabled.x509fmtder
 #define ENABLED_OPT_PRIORITY gnutls_serv_options.enabled.priority

@@ -25,28 +25,24 @@
           "long-option": "index",
           "short-option": "i",
           "description": "specify the index of the group parameters in tpasswd.conf to use",
-          "detail": "",
           "argument-type": "number"
         },
         {
           "long-option": "username",
           "short-option": "u",
           "description": "specify a username",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "passwd",
           "short-option": "p",
           "description": "specify a password file",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "salt",
           "short-option": "s",
           "description": "specify salt size",
-          "detail": "",
           "argument-type": "number"
         },
         {

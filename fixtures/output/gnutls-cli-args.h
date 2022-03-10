@@ -65,6 +65,7 @@ struct gnutls_cli_options
     bool noticket;
     bool srtp_profiles;
     bool alpn;
+    bool compress_cert;
     bool heartbeat;
     bool recordsize;
     bool disable_sni;
@@ -75,6 +76,7 @@ struct gnutls_cli_options
     bool inline_commands_prefix;
     bool provider;
     bool fips140_mode;
+    bool list_config;
     bool logfile;
     bool keymatexport;
     bool keymatexportsize;
@@ -113,6 +115,7 @@ struct gnutls_cli_options
     const char *pskkey;
     const char *port;
     const char *srtp_profiles;
+    const char *compress_cert;
     const char *recordsize;
     const char *inline_commands_prefix;
     const char *provider;
@@ -191,6 +194,7 @@ struct gnutls_cli_options
     bool noticket;
     bool srtp_profiles;
     bool alpn;
+    bool compress_cert;
     bool heartbeat;
     bool recordsize;
     bool disable_sni;
@@ -201,6 +205,7 @@ struct gnutls_cli_options
     bool inline_commands_prefix;
     bool provider;
     bool fips140_mode;
+    bool list_config;
     bool logfile;
     bool keymatexport;
     bool keymatexportsize;
@@ -269,6 +274,7 @@ struct gnutls_cli_options
 #define HAVE_OPT_NOTICKET gnutls_cli_options.present.noticket
 #define HAVE_OPT_SRTP_PROFILES gnutls_cli_options.present.srtp_profiles
 #define HAVE_OPT_ALPN gnutls_cli_options.present.alpn
+#define HAVE_OPT_COMPRESS_CERT gnutls_cli_options.present.compress_cert
 #define HAVE_OPT_HEARTBEAT gnutls_cli_options.present.heartbeat
 #define HAVE_OPT_RECORDSIZE gnutls_cli_options.present.recordsize
 #define HAVE_OPT_DISABLE_SNI gnutls_cli_options.present.disable_sni
@@ -279,6 +285,7 @@ struct gnutls_cli_options
 #define HAVE_OPT_INLINE_COMMANDS_PREFIX gnutls_cli_options.present.inline_commands_prefix
 #define HAVE_OPT_PROVIDER gnutls_cli_options.present.provider
 #define HAVE_OPT_FIPS140_MODE gnutls_cli_options.present.fips140_mode
+#define HAVE_OPT_LIST_CONFIG gnutls_cli_options.present.list_config
 #define HAVE_OPT_LOGFILE gnutls_cli_options.present.logfile
 #define HAVE_OPT_KEYMATEXPORT gnutls_cli_options.present.keymatexport
 #define HAVE_OPT_KEYMATEXPORTSIZE gnutls_cli_options.present.keymatexportsize
@@ -338,6 +345,7 @@ struct gnutls_cli_options
 #define OPT_ARG_NOTICKET gnutls_cli_options.arg.noticket
 #define OPT_ARG_SRTP_PROFILES gnutls_cli_options.arg.srtp_profiles
 #define OPT_ARG_ALPN gnutls_cli_options.arg.alpn
+#define OPT_ARG_COMPRESS_CERT gnutls_cli_options.arg.compress_cert
 #define OPT_ARG_HEARTBEAT gnutls_cli_options.arg.heartbeat
 #define OPT_ARG_RECORDSIZE gnutls_cli_options.arg.recordsize
 #define OPT_ARG_DISABLE_SNI gnutls_cli_options.arg.disable_sni
@@ -348,6 +356,7 @@ struct gnutls_cli_options
 #define OPT_ARG_INLINE_COMMANDS_PREFIX gnutls_cli_options.arg.inline_commands_prefix
 #define OPT_ARG_PROVIDER gnutls_cli_options.arg.provider
 #define OPT_ARG_FIPS140_MODE gnutls_cli_options.arg.fips140_mode
+#define OPT_ARG_LIST_CONFIG gnutls_cli_options.arg.list_config
 #define OPT_ARG_LOGFILE gnutls_cli_options.arg.logfile
 #define OPT_ARG_KEYMATEXPORT gnutls_cli_options.arg.keymatexport
 #define OPT_ARG_KEYMATEXPORTSIZE gnutls_cli_options.arg.keymatexportsize
@@ -413,6 +422,7 @@ struct gnutls_cli_options
 #define ENABLED_OPT_NOTICKET gnutls_cli_options.enabled.noticket
 #define ENABLED_OPT_SRTP_PROFILES gnutls_cli_options.enabled.srtp_profiles
 #define ENABLED_OPT_ALPN gnutls_cli_options.enabled.alpn
+#define ENABLED_OPT_COMPRESS_CERT gnutls_cli_options.enabled.compress_cert
 #define ENABLED_OPT_HEARTBEAT gnutls_cli_options.enabled.heartbeat
 #define ENABLED_OPT_RECORDSIZE gnutls_cli_options.enabled.recordsize
 #define ENABLED_OPT_DISABLE_SNI gnutls_cli_options.enabled.disable_sni
@@ -423,6 +433,7 @@ struct gnutls_cli_options
 #define ENABLED_OPT_INLINE_COMMANDS_PREFIX gnutls_cli_options.enabled.inline_commands_prefix
 #define ENABLED_OPT_PROVIDER gnutls_cli_options.enabled.provider
 #define ENABLED_OPT_FIPS140_MODE gnutls_cli_options.enabled.fips140_mode
+#define ENABLED_OPT_LIST_CONFIG gnutls_cli_options.enabled.list_config
 #define ENABLED_OPT_LOGFILE gnutls_cli_options.enabled.logfile
 #define ENABLED_OPT_KEYMATEXPORT gnutls_cli_options.enabled.keymatexport
 #define ENABLED_OPT_KEYMATEXPORTSIZE gnutls_cli_options.enabled.keymatexportsize

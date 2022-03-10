@@ -24,20 +24,17 @@
         {
           "long-option": "verbose",
           "short-option": "V",
-          "description": "More verbose output",
-          "detail": ""
+          "description": "More verbose output"
         },
         {
           "long-option": "infile",
           "description": "Input file",
-          "detail": "",
           "file-exists": true,
           "argument-type": "file"
         },
         {
           "long-option": "outfile",
           "description": "Output file",
-          "detail": "",
           "argument-type": "string"
         }
       ]
@@ -49,8 +46,7 @@
         {
           "long-option": "certificate-info",
           "short-option": "i",
-          "description": "Print information on the given certificate",
-          "detail": ""
+          "description": "Print information on the given certificate"
         },
         {
           "long-option": "pubkey-info",
@@ -60,25 +56,21 @@
         {
           "long-option": "generate-self-signed",
           "short-option": "s",
-          "description": "Generate a self-signed certificate",
-          "detail": ""
+          "description": "Generate a self-signed certificate"
         },
         {
           "long-option": "generate-certificate",
           "short-option": "c",
-          "description": "Generate a signed certificate",
-          "detail": ""
+          "description": "Generate a signed certificate"
         },
         {
           "long-option": "generate-proxy",
-          "description": "Generates a proxy certificate",
-          "detail": ""
+          "description": "Generates a proxy certificate"
         },
         {
           "long-option": "update-certificate",
           "short-option": "u",
-          "description": "Update a signed certificate",
-          "detail": ""
+          "description": "Update a signed certificate"
         },
         {
           "long-option": "fingerprint",
@@ -98,8 +90,7 @@
         },
         {
           "long-option": "v1",
-          "description": "Generate an X.509 version 1 certificate (with no extensions)",
-          "detail": ""
+          "description": "Generate an X.509 version 1 certificate (with no extensions)"
         },
         {
           "long-option": "sign-params",
@@ -115,8 +106,7 @@
       "options": [
         {
           "long-option": "crq-info",
-          "description": "Print information on the given certificate request",
-          "detail": ""
+          "description": "Print information on the given certificate request"
         },
         {
           "long-option": "generate-request",
@@ -129,8 +119,7 @@
         },
         {
           "long-option": "no-crq-extensions",
-          "description": "Do not use extensions in certificate requests",
-          "detail": ""
+          "description": "Do not use extensions in certificate requests"
         }
       ]
     },
@@ -163,8 +152,7 @@
         {
           "long-option": "key-info",
           "short-option": "k",
-          "description": "Print information on a private key",
-          "detail": ""
+          "description": "Print information on a private key"
         },
         {
           "long-option": "p8-info",
@@ -191,7 +179,6 @@
         {
           "long-option": "bits",
           "description": "Specify the number of bits for key generation",
-          "detail": "",
           "argument-type": "number"
         },
         {
@@ -215,8 +202,7 @@
         {
           "long-option": "pkcs8",
           "short-option": "8",
-          "description": "Use PKCS #8 format for private keys",
-          "detail": ""
+          "description": "Use PKCS #8 format for private keys"
         },
         {
           "long-option": "provable",
@@ -243,8 +229,7 @@
         {
           "long-option": "crl-info",
           "short-option": "l",
-          "description": "Print information on the given CRL structure",
-          "detail": ""
+          "description": "Print information on the given CRL structure"
         },
         {
           "long-option": "generate-crl",
@@ -350,8 +335,7 @@
         },
         {
           "long-option": "p7-info",
-          "description": "Print information on a PKCS #7 structure",
-          "detail": ""
+          "description": "Print information on a PKCS #7 structure"
         },
         {
           "long-option": "p7-verify",
@@ -360,8 +344,7 @@
         },
         {
           "long-option": "smime-to-p7",
-          "description": "Convert S/MIME to PKCS #7 structure",
-          "detail": ""
+          "description": "Convert S/MIME to PKCS #7 structure"
         }
       ]
     },
@@ -382,8 +365,7 @@
         },
         {
           "long-option": "dh-info",
-          "description": "Print information PKCS #3 encoded Diffie-Hellman parameters",
-          "detail": ""
+          "description": "Print information PKCS #3 encoded Diffie-Hellman parameters"
         },
         {
           "long-option": "load-privkey",
@@ -451,8 +433,7 @@
         },
         {
           "long-option": "hex-numbers",
-          "description": "Print big number in an easier format to parse",
-          "detail": ""
+          "description": "Print big number in an easier format to parse"
         },
         {
           "long-option": "cprint",
@@ -517,19 +498,16 @@
         {
           "long-option": "disable-quick-random",
           "description": "No effect",
-          "detail": "",
           "deprecated": true
         },
         {
           "long-option": "template",
           "description": "Template file to use for non-interactive operation",
-          "detail": "",
           "argument-type": "string"
         },
         {
           "long-option": "stdout-info",
-          "description": "Print information to stdout instead of stderr",
-          "detail": ""
+          "description": "Print information to stdout instead of stderr"
         },
         {
           "long-option": "ask-pass",

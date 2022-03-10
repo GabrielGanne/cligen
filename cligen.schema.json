@@ -116,11 +116,13 @@
 		  "properties": {
 		    "min": {
 		      "description": "The lower bound of the range",
-		      "type": "integer"
+		      "type": "integer",
+		      "minimum": -2147483649
 		    },
 		    "max": {
 		      "description": "The upper bound of the range",
-		      "type": "integer"
+		      "type": "integer",
+		      "maximum": 2147483648
 		    }
 		  }
 		},
@@ -143,11 +145,13 @@
 		  "properties": {
 		    "min": {
 		      "description": "The lower bound of the range",
-		      "type": "integer"
+		      "type": "integer",
+		      "minimum": 0
 		    },
 		    "max": {
 		      "description": "The upper bound of the range",
-		      "type": "integer"
+		      "type": "integer",
+		      "maximum": 4294967296
 		    }
 		  }
 		},
@@ -164,7 +168,10 @@
 		  "type": "string"
 		}
 	      },
-	      "requires": ["long-option"]
+	      "requires": ["long-option"],
+	      "dependentRequired": {
+		"disable-prefix": ["enabled", "enable-prefix"]
+	      }
 	    }
 	  }
 	},

@@ -7,8 +7,10 @@ interface) tools written in C.
 
 This project was born during the process of
 [migrating](https://gitlab.com/gnutls/gnutls/-/milestones/23#tab-issues)
-GnuTLS CLI infrastructure.  Several other tools had been considered
-but none of them satisfied the following requirements:
+the GnuTLS CLI infrastructure from GNU
+[AutoGen](https://www.gnu.org/software/autogen/).  Several other tools
+had been considered but none of them satisfied the following
+requirements:
 
 - The generator produces option parsing code and documentation from
   the same specification
@@ -54,6 +56,24 @@ To generate texinfo documentation from JSON specification:
 $ PYTHONPATH=. ./cli-docgen.py --format texi \
                                --package YOUR_PACKAGE --version YOUR_VERSION \
                                your-options.json foo.texi
+```
+
+### Integrating the infrastructure into your project
+
+The easiest way would be to embed the cligen project as a git
+submodule, call `make install` at bootstrap phase, and include the
+installed files in the distribution.
+
+```console
+$ git submodule add https://gitlab.com/gnutls/cligen.git
+
+$ cat bootstrap.conf
+...
+make -C cligen install DESTDIR=<destdir>
+
+$ cat Makefile.am
+...
+EXTRA_DIST = <distdir>
 ```
 
 ### Using the generated code from your program

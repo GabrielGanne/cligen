@@ -59,12 +59,6 @@ struct tpmtool_options
     int bits;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

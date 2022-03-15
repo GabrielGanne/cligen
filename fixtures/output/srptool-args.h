@@ -49,12 +49,6 @@ struct srptool_options
     int salt;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

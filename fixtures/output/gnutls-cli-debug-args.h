@@ -40,12 +40,6 @@ struct gnutls_cli_debug_options
     int port;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

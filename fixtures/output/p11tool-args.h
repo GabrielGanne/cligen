@@ -114,12 +114,6 @@ struct p11tool_options
     int generate_random;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

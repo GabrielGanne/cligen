@@ -145,12 +145,6 @@ struct certtool_options
     int salt_size;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

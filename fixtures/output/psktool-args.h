@@ -41,12 +41,6 @@ struct psktool_options
     int keysize;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

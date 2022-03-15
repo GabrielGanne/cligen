@@ -575,6 +575,7 @@ def generate_header(desc: Desc, info: Info, outfile: TextIO):
     enabled_opts = io.StringIO()
     opts_count = io.StringIO()
     opts_array = io.StringIO()
+    has_list_arg = False
 
     struct_name = f'{mangle(desc.tool.name)}_options'
     global_name = f'{mangle(desc.tool.name)}_options'
@@ -598,6 +599,7 @@ def generate_header(desc: Desc, info: Info, outfile: TextIO):
 
         if arg_type:
             if option.multiple:
+                has_list_arg = True
                 struct_members_list.write(
                     f'{INDENT*2}struct {list_struct_name} {lower_opt};\n'
                 )
@@ -669,13 +671,16 @@ struct {struct_name}
 {INDENT}{{
 {struct_members_value.getvalue().rstrip()}
 {INDENT}}} value;
-
+''')
+    if has_list_arg:
+        outfile.write(f'''
 {INDENT}/* Option arguments parsed as list */
 {INDENT}struct
 {INDENT}{{
 {struct_members_list.getvalue().rstrip()}
 {INDENT}}} list;
-
+''')
+    outfile.write(f'''
 {INDENT}/* Option enablement status */
 {INDENT}struct
 {INDENT}{{

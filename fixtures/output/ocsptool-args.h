@@ -65,12 +65,6 @@ struct ocsptool_options
     int debug;
   } value;
 
-  /* Option arguments parsed as list */
-  struct
-  {
-
-  } list;
-
   /* Option enablement status */
   struct
   {

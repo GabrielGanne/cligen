@@ -73,7 +73,7 @@ make -C cligen install DESTDIR=<destdir>
 
 $ cat Makefile.am
 ...
-EXTRA_DIST = <distdir>
+EXTRA_DIST = <destdir>
 ```
 
 ### Using the generated code from your program
@@ -100,7 +100,7 @@ To check the option status, use:
 
 ## TODO
 
-- Add different flavors of codegen output other than `getopt` (argp, GLib)
+- Add different flavors of codegen output other than `getopt` ([argp](https://www.gnu.org/software/libc/manual/html_node/Argp.html), GLib [OptionContext](https://docs.gtk.org/glib/struct.OptionContext.html))
 
 ## License
 

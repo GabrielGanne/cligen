@@ -6,8 +6,17 @@ from cligen.types import Desc
 import datetime
 import io
 import os
-import pwd
 import textwrap
+
+
+try:
+    import pwd
+
+    def get_default_copyright_holder():
+        return pwd.getpwuid(os.getuid()).pw_gecos
+except ImportError:
+    def get_default_copyright_holder():
+        return 'COPYRIGHT HOLDER'
 
 
 class Info(NamedTuple):
@@ -15,7 +24,7 @@ class Info(NamedTuple):
     version: str
     license: str = 'gpl3+'
     copyright_year: str = str(datetime.date.today().year)
-    copyright_holder: str = pwd.getpwuid(os.getuid()).pw_gecos
+    copyright_holder: str = get_default_copyright_holder()
     bug_email: Optional[str] = None
     authors: Sequence[str] = list()
 

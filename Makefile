@@ -63,9 +63,9 @@ check: mypy flake8 jsonschema codegen docgen-man docgen-texi
 INSTALL ?= install
 
 install:
-	$(INSTALL) -D -t ${DESTDIR} cli-codegen.py
-	$(INSTALL) -D -t ${DESTDIR} cli-docgen.py
+	$(INSTALL) -t ${DESTDIR} cli-codegen.py
+	$(INSTALL) -t ${DESTDIR} cli-docgen.py
 	$(INSTALL) -d ${DESTDIR}/cligen
-	$(INSTALL) -D -t ${DESTDIR}/cligen cligen/*.py
+	$(INSTALL) -t ${DESTDIR}/cligen cligen/*.py
 	$(INSTALL) -d ${DESTDIR}/cligen/doc
-	$(INSTALL) -D -t ${DESTDIR}/cligen/doc cligen/doc/*.py
+	$(INSTALL) -t ${DESTDIR}/cligen/doc cligen/doc/*.py

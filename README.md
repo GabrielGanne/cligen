@@ -61,19 +61,15 @@ $ PYTHONPATH=. ./cli-docgen.py --format texi \
 ### Integrating the infrastructure into your project
 
 The easiest way would be to embed the cligen project as a git
-submodule, call `make install` at bootstrap phase, and include the
-installed files in the distribution.
+submodule.  To make it easy to integrate with Automake, a helper
+Makefile is provided, which can be included from the top-level
+Makefile.am:
 
 ```console
 $ git submodule add https://gitlab.com/gnutls/cligen.git
-
-$ cat bootstrap.conf
-...
-make -C cligen install DESTDIR=<destdir>
-
 $ cat Makefile.am
-...
-EXTRA_DIST = <destdir>
+include $(top_srcdir)/cligen/cligen.mk
+noinst_PYTHON += $(cligen_sources)
 ```
 
 ### Using the generated code from your program

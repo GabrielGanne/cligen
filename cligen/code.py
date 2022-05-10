@@ -351,12 +351,17 @@ OPT_VALUE_{upper_opt} > {arg_range.maximum})
         f'{INDENT*6}"{line}\\n"' for line in version_n.split('\n')
     ])
 
+    if outfile.name.endswith('.c'):
+        outfile_base = outfile.name[:-len('.c')]
+    else:
+        outfile_base = outfile.name
+
     outfile.write(f'''\
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
 
-#include "{outfile.name.removesuffix('.c')}.h"
+#include "{outfile_base}.h"
 #include <errno.h>
 #include <error.h>
 #include <getopt.h>

@@ -163,7 +163,7 @@ def generate(desc: Desc, info: Info,
             section_docs.write(f'''\
 @anchor{{{desc.tool.name} {section.ref}}}
 {get_heading(level+1)} {section.ref} options
-{section.description.removesuffix('.')}.
+{section.description.strip('.')}.
 {option_docs}\
 ''')
         else:

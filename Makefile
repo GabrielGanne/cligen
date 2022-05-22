@@ -1,3 +1,6 @@
+# Copyright (C) 2021-2022 Daiki Ueno
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
 .PHONY: mypy flake8 jsonschema codegen docgen-man docgen-texi check install
 
 all:

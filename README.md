@@ -84,7 +84,7 @@ int process_options (int argc, char **argv);
 
 To check the option status, use:
 
-- `HAVE_OPT(name)`: expands to the option presense (`true` or `false`)
+- `HAVE_OPT(name)`: expands to the option presence (`true` or `false`)
 - `OPT_ARG(name)`: expands to the option argument (string or integer,
   depending on the specification
 - `ENABLED_OPT(name)`: expands to the option enablement status (`true`

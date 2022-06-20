@@ -16,4 +16,4 @@ check:
     - shared
     - linux
   script:
-    - make check
+    - tox -vv

@@ -179,11 +179,14 @@ def usage(desc: Desc, info: Info) -> str:
 def generate_source(desc: Desc, info: Info, outfile: TextIO):
     long_opts = io.StringIO()
     short_opts = list()
+    default_definitions = io.StringIO()
+    default_statements = io.StringIO()
     switch_cases = io.StringIO()
     enable_statements = io.StringIO()
     constraint_statements = io.StringIO()
     has_list_arg = False
     has_number_arg = False
+    has_default_arg = False
 
     options = [option for section in desc.sections
                for option in section.options]
@@ -250,6 +253,23 @@ def generate_source(desc: Desc, info: Info, outfile: TextIO):
                         f'{INDENT*4}opts->value.{lower_opt} = '
                         'parse_number(optarg);\n'
                     ))
+                if option.argument_default:
+                    has_default_arg = True
+                    default_definitions.write(
+                        f'static const char *{lower_opt}_default = '
+                        f'"{option.argument_default}";\n'
+                    )
+                    default_statements.write(
+                        f'{INDENT}opts->arg.{lower_opt} = '
+                        f'{lower_opt}_default;\n'
+                    )
+                    if arg_type == ArgumentType.NUMBER:
+                        assert isinstance(option.argument_default, int)
+                        default_statements.write((
+                            f'{INDENT}opts->value.{lower_opt} = '
+                            f'{option.argument_default};\n'
+                        ))
+
         switch_cases.write(
             f'{INDENT*4}opts->enabled.{lower_opt} = true;\n'
         )
@@ -450,12 +470,26 @@ static const struct option long_options[] =
 {long_opts.getvalue()}
 }};
 
+''')
+    if has_default_arg:
+        outfile.write(f'''\
+/* Default options.  */
+{default_definitions.getvalue().rstrip()}
+
+''')
+    outfile.write(f'''\
 int
 process_options (int argc, char **argv)
 {{
 {INDENT}struct {struct_name} *opts = &{global_name};
 {INDENT}int opt;
 
+''')
+    if has_default_arg:
+        outfile.write(f'''\
+{default_statements.getvalue().rstrip()}
+''')
+    outfile.write(f'''\
 {enable_statements.getvalue().rstrip()}
 {INDENT}while ((opt = getopt_long (argc, argv, "{short_opts_concatenated}",
 {INDENT}                           long_options, NULL)) != EOF)

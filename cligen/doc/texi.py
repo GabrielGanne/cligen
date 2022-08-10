@@ -159,7 +159,7 @@ def generate(desc: Desc, info: Info,
             option_docs = generate_options(desc.tool,
                                            section.options,
                                            level+1)
-            assert(section.description)
+            assert section.description
             section_docs.write(f'''\
 @anchor{{{desc.tool.name} {section.ref}}}
 {get_heading(level+1)} {section.ref} options

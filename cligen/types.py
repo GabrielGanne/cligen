@@ -1,7 +1,7 @@
 # Copyright (C) 2021-2022 Daiki Ueno
 # SPDX-License-Identifier: LGPL-2.1-or-later
 
-from typing import NamedTuple, Optional, Sequence
+from typing import NamedTuple, Optional, Sequence, Union
 from enum import Enum, auto
 import textwrap
 
@@ -83,6 +83,7 @@ class OptionDesc(NamedTuple):
     argument_range: Optional[Range] = None
     argument_type: Optional[ArgumentType] = None
     argument_name: Optional[str] = None
+    argument_default: Optional[Union[str, int]] = None
     multiple: bool = False
     occur_range: Optional[Range] = None
     enabled: bool = False
@@ -108,6 +109,7 @@ class OptionDesc(NamedTuple):
                        obj['argument-type']
                    ) if 'argument-type' in obj else None,
                    argument_name=obj.get('argument-name'),
+                   argument_default=obj.get('argument-default'),
                    multiple=obj.get('multiple'),
                    occur_range=UnsignedRange.from_json(
                        obj['occurrences']

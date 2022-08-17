@@ -168,6 +168,29 @@
 		  "type": "string"
 		}
 	      },
+	      "if": {
+		"properties": {
+		  "argument-type": {
+		    "const": "number"
+		  }
+		}
+	      },
+	      "then": {
+		"properties": {
+		  "argument-default": {
+		    "description": "The default value of the option argument",
+                    "type": "integer"
+                  }
+		}
+	      },
+	      "else": {
+		"properties": {
+		  "argument-default": {
+		    "description": "The default value of the option argument",
+                    "type": "string"
+		  }
+		}
+	      },
 	      "requires": ["long-option"],
 	      "dependentRequired": {
 		"disable-prefix": ["enabled", "enable-prefix"]

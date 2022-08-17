@@ -87,6 +87,15 @@ in the range {option.argument_range.minimum} through \
 .fi
 .in -4
 ''')
+            if option.argument_default:
+                docs.write(f'''\
+The default
+\\f\\*[I-Font]number\\f[]
+for this option is:
+.ti +4
+ {option.argument_default}
+.sp
+''')
         if len(option.conflicts) > 0:
             docs.write(f'''\
 This option must not appear in combination with any of the following options:

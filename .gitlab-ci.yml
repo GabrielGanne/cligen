@@ -13,7 +13,6 @@ check:
   image: $CI_REGISTRY/$BUILD_IMAGES_PROJECT:$FEDORA_BUILD
   stage: check
   tags:
-    - shared
-    - linux
+    - saas-linux-small-amd64
   script:
     - tox -vv

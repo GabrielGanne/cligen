@@ -4,10 +4,10 @@
 
 #include "fixtures/output/gnutls-serv-args.h"
 #include <errno.h>
-#include <error.h>
 #include <getopt.h>
 #include <limits.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #ifndef _WIN32
@@ -38,13 +38,19 @@ append_to_list (struct gnutls_serv_list *list,
   size_t new_count = xsum (list->count, 1);
 
   if (size_overflow_p (new_count))
-    error (EXIT_FAILURE, 0, "too many arguments for %s",
-           name);
+    {
+      fprintf (stderr, "too many arguments for %s\n",
+               name);
+      exit (EXIT_FAILURE);
+    }
 
   tmp = reallocarray (list->args, new_count, sizeof (char *));
   if (!tmp)
-    error (EXIT_FAILURE, 0, "unable to allocate memory for %s",
-           name);
+    {
+      fprintf (stderr, "unable to allocate memory for %s\n",
+               name);
+      exit (EXIT_FAILURE);
+    }
 
   list->args = tmp;
   list->args[list->count] = optarg;
@@ -67,8 +73,14 @@ parse_number (const char *arg)
     result = strtol (arg, &endptr, 10);
 
   if (errno != 0 || (endptr && *endptr != '\0'))
-    error (EXIT_FAILURE, errno, "'%s' is not a recognizable number.",
-           arg);
+    {
+      char buf[80];
+      snprintf (buf, sizeof(buf),
+                "'%s' is not a recognizable number",
+                arg);
+      perror (buf);
+      exit (EXIT_FAILURE);
+    }
 
   return result;
 }
@@ -387,57 +399,68 @@ process_options (int argc, char **argv)
 
   if (HAVE_OPT(DEBUG) && OPT_VALUE_DEBUG < 0)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range.",
-             "debug", opts->value.debug);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "debug", opts->value.debug);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(DEBUG) && OPT_VALUE_DEBUG > 9999)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range",
-             "debug", opts->value.debug);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "debug", opts->value.debug);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(MAXEARLYDATA) && OPT_VALUE_MAXEARLYDATA < 1)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range.",
-             "maxearlydata", opts->value.maxearlydata);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "maxearlydata", opts->value.maxearlydata);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(MAXEARLYDATA) && OPT_VALUE_MAXEARLYDATA > 2147483648)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range",
-             "maxearlydata", opts->value.maxearlydata);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "maxearlydata", opts->value.maxearlydata);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(MTU) && OPT_VALUE_MTU < 0)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range.",
-             "mtu", opts->value.mtu);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "mtu", opts->value.mtu);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(MTU) && OPT_VALUE_MTU > 17000)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range",
-             "mtu", opts->value.mtu);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "mtu", opts->value.mtu);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(DISABLE_CLIENT_CERT) && HAVE_OPT(REQUIRE_CLIENT_CERT))
     {
-      error (EXIT_FAILURE, 0, "the '%s' and '%s' options conflict",
-             "disable-client-cert", "require_client_cert");
+      fprintf (stderr, "the '%s' and '%s' options conflict\n",
+               "disable-client-cert", "require_client_cert");
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(RAWPKFILE) && !HAVE_OPT(RAWPKKEYFILE))
     {
-      error (EXIT_FAILURE, 0, "%s option requires the %s options",
-             "rawpkfile", "rawpkkeyfile");
+      fprintf (stderr, "%s option requires the %s options\n",
+               "rawpkfile", "rawpkkeyfile");
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(RECORDSIZE) && OPT_VALUE_RECORDSIZE < 0)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range.",
-             "recordsize", opts->value.recordsize);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "recordsize", opts->value.recordsize);
+      exit (EXIT_FAILURE);
     }
   if (HAVE_OPT(RECORDSIZE) && OPT_VALUE_RECORDSIZE > 16384)
     {
-      error (EXIT_FAILURE, 0, "%s option value %d is out of range",
-             "recordsize", opts->value.recordsize);
+      fprintf (stderr, "%s option value %d is out of range\n",
+               "recordsize", opts->value.recordsize);
+      exit (EXIT_FAILURE);
     }
   if (optind < argc)
     {
-      error (EXIT_FAILURE, 0, "Command line arguments are not allowed.");
+      fprintf (stderr, "Command line arguments are not allowed\n");
+      exit (EXIT_FAILURE);
     }
 
 
@@ -457,11 +480,17 @@ process_options (int argc, char **argv)
       int pfds[2];
 
       if (pipe (pfds) < 0)
-        error (EXIT_FAILURE, errno, "pipe");
+        {
+          perror ("pipe");
+          exit (EXIT_FAILURE);
+        }
 
       pid = fork ();
       if (pid < 0)
-        error (EXIT_FAILURE, errno, "fork");
+        {
+          perror ("fork");
+          exit (EXIT_FAILURE);
+        }
 
       if (pid == 0)
         {
@@ -501,7 +530,7 @@ process_options (int argc, char **argv)
         {
           const char str[] =
             "gnutls-serv 3.7.4\n"
-            "Copyright (C) 2022 Daiki Ueno\n"
+            "Copyright (C) 2024 Daiki Ueno\n"
             "This is free software. It is licensed for use, modification and\n"
             "redistribution under the terms of the GNU General Public License,\n"
             "version 3 or later <http://gnu.org/licenses/gpl.html>\n"
@@ -520,7 +549,7 @@ process_options (int argc, char **argv)
         {
           const char str[] =
             "gnutls-serv 3.7.4\n"
-            "Copyright (C) 2022 Daiki Ueno\n"
+            "Copyright (C) 2024 Daiki Ueno\n"
             "This is free software. It is licensed for use, modification and\n"
             "redistribution under the terms of the GNU General Public License,\n"
             "version 3 or later <http://gnu.org/licenses/gpl.html>\n"
@@ -543,11 +572,12 @@ process_options (int argc, char **argv)
         }
       else
         {
-          error (EXIT_FAILURE, 0,
-                 "version option argument 'a' invalid.  Use:\n"
-                 "	'v' - version only\n"
-                 "	'c' - version and copyright\n"
-                 "	'n' - version and full copyright notice");
+          fprintf (stderr,
+                   "version option argument 'a' invalid.  Use:\n"
+                   "	'v' - version only\n"
+                   "	'c' - version and copyright\n"
+                   "	'n' - version and full copyright notice\n");
+          exit (EXIT_FAILURE);
         }
     }
 

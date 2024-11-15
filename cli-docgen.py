@@ -6,6 +6,7 @@ import argparse
 import cligen.package
 import cligen.types
 import json
+import yaml
 import sys
 
 parser = argparse.ArgumentParser(description='generate documentation')
@@ -37,7 +38,11 @@ if args.copyright_holder:
 if args.bug_email:
     kwargs['bug_email'] = args.bug_email
 info = cligen.package.Info(**kwargs)
-desc = cligen.types.Desc.from_json(json.load(args.json))
+try:
+    content = yaml.safe_load(args.json)
+except:
+    content = json.load(args.json)
+desc = cligen.types.Desc.from_json(content)
 
 includes = dict()
 if args.include:
